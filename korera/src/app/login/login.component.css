@@ -1,0 +1,15 @@
+.container > div > div{
+  margin-top: 6vh !important;
+  margin: auto;
+  width: 20vw;
+}
+
+.container > div > div a{
+  margin-left: 7.5vw;
+  font-size: 12px;
+}
+
+#rememberMeId{
+  font-weight: lighter !important;
+  font-size: 10px;
+}

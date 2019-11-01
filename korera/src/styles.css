@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css'); */
+@media only screen and (max-width: 1000px) {
+  .btn {
+    font-size: 10px !important;
+  }
+  label {
+    font-size: 10px !important;
+  }
+}
+
+@media only screen and (max-width: 1260px){
+  form{
+    width: 250px !important;
+  }
+  .container > div > div{
+    width: 250px !important;
+  }
+}
+
+
+.container > div{
+  height: 250px;
+}
+
+.container h1{
+  text-align: center;
+}
+
+h1{
+  font-style: italic;
+  color: orange;
+  text-shadow: -0.1px 0 black, 0 0.1px black, 0.1px 0 black, 0 -0.1px black
+}
+
+.btn {
+  color: white;
+  background-color: orangered;
+  height: 5vh;
+}
+
+.btn-primary {
+  background-color: orangered;
+  margin-top: 1vh;
+  width: 100%;
+  height: 7vh;
+  font-size: 1vw;
+}
+
+.btn-secondary {
+  background-color: #d8581d;
+  margin-top: 1vh;
+  width: 100%;
+  height: 7vh;
+  font-size: 1vw;
+}
+
+
+.form-group .ng-touched{
+  background-color: beige;
+  text-align: left !important;
+  display: inline-block;
+}
+
+label{
+  font-weight: bold;
+  font-size: 1vw;
+}
+
+form {
+  width: 20vw;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+#checkbox {
+  width: auto;
+  height: auto;
+}
+
+.form-group input{
+  margin-top: 1vh;
+  width: 98%;
+  height: 7vh;
+}
+
+.errorGroup {
+  color: red;
+  font-size: 12px;
+}
+mat-sidenav-container{
+  margin-top: 50px;
+  width: 100%;
+  height: 100%;
+}
+/* header{
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+} */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,31 @@
+<header>
+  <div>
+      HEADER CONTENT
+
+  </div>
+</header>
+<mat-sidenav-container [autosize]="false">
+    <mat-sidenav mode="side" align="start" opened #sidenav>
+        <nav>
+          <div class="link-group">
+              <a>Resource</a>
+          </div>
+          <div class="link-group">
+              <a>Project</a>
+          </div>
+          <div class="link-group">
+              <a>Formula</a>
+          </div>
+        </nav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <button (click)="sidenav.toggle()">
+          <img src="" alt="menu-icon" />
+      </button>
+      <!-- <app-login></app-login> -->
+      <app-signup></app-signup>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- <app-signup></app-signup> -->
