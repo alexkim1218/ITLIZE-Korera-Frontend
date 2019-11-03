@@ -1,27 +1,17 @@
 <header>
   <div>
-      HEADER CONTENT
-
+    <app-header></app-header>
   </div>
 </header>
+
 <mat-sidenav-container [autosize]="false">
     <mat-sidenav mode="side" align="start" opened #sidenav>
-        <nav>
-          <div class="link-group">
-              <a>Resource</a>
-          </div>
-          <div class="link-group">
-              <a>Project</a>
-          </div>
-          <div class="link-group">
-              <a>Formula</a>
-          </div>
-        </nav>
+      <app-sidebar></app-sidebar>
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <button (click)="sidenav.toggle()">
-          <img src="" alt="menu-icon" />
+      <button class="sidebarButton" (click)="sidenav.toggle()">
+          <img src="../assets/sidebar_icon.png" height=20px>
       </button>
       <!-- <app-login></app-login> -->
       <app-signup></app-signup>
