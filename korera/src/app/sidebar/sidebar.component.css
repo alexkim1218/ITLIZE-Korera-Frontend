@@ -1,4 +1,12 @@
 body {
   background-color: black;
   color: white;
+  width: 370px;
+  line-height: 1.8;
+  text-align: left;
+  text-indent: 40px;
+  font-size: 25px;
+  font-style: bold;
+  font-weight: lighter;
+  border-right:2px solid black;
 }
