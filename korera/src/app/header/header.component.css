@@ -1,6 +1,62 @@
+* {
+margin: 0;
+padding: 0;
+}
+
 body {
   background-color: white;
   color: black;
   border-bottom: 2px solid black;
+}
+
+img {
   vertical-align: middle;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+/* Create columns that floats next to each other */
+.columnLogo {
+  float: left;
+  width: 370px;
+}
+
+.columnProject {
+  float: left;
+  width: 60%;
+  text-align: center;
+  line-height: 80px;
+}
+
+.columnUser {
+  float: left;
+  width: 50px;
+  line-height: 80px;
+}
+
+.columnTitle {
+  float: left;
+  width: 12%;
+  text-align: center;
+  line-height: 80px;
+}
+
+.columnQuestion {
+  float: left;
+  width: 50px;
+  line-height: 80px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
