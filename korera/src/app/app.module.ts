@@ -5,22 +5,27 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AlertModule } from 'ngx-bootstrap';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SignupComponent } from './signup/signup.component';
+import { ResourceComponent } from './resource/resource.component';
+import {NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ResourceComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSidenavModule
-    // MatCheckboxModule
+    MatSidenavModule,
+    NgbDropdownModule,
+    NgbModalModule,
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,120 @@
+#tableHeaderTools div{
+  padding: 4px;
+}
+
+#tableHeaderTools{
+  background-color: grey;
+}
+
+#tableHeaderTools:first-child{
+  display: flex;
+}
+
+#tableHeaderTools input{
+  padding: 2px;
+  border: lightgrey;
+  height: 100%;
+}
+
+#tableHeaderTools .col button{
+  height: 100%;
+}
+
+#tableHeader{
+  background-color: #dbdbdb;
+}
+
+tbody tr td{
+  border: none;
+}
+
+table{
+  border: 1px solid #dee2e6;
+}
+
+thead, tbody, tr{
+  width: 100%;
+}
+tr{
+  margin: 0;
+}
+
+.container {
+  margin-top: 2vh;
+}
+
+button{
+  background-color: orangered;
+  color: white;
+  border: none;
+}
+
+.dropdown-toggle::after {
+  display:none;
+}
+
+#dropdown-menu > button{
+  background-color: white;
+  color: black;
+  height: 33%;
+  padding: 0;
+}
+
+#dropdown-menu > button:hover{
+  background-color: #dbdbdb;
+}
+
+#dropdown-menu > button .row{
+  height: 5vh;
+  width: 100%;
+  margin: 0;
+  font-size: 10px;
+}
+
+#dropdown-menu > button .row div{
+  height: 100%;
+}
+
+img{
+  height: 100%;
+  width: 100%;
+}
+
+#dropdown-menu{
+  border-radius: 0;
+}
+
+#checkmark-btn{
+  width: 100%
+}
+
+.col .row{
+  margin: 0;
+  height: 30px;
+}
+
+#checkmark-btn, #cancel-btn{
+  height: 100%;
+  background: none;
+  color: orangered;
+}
+
+.modal-header{
+  background-color: grey;
+  color: white;
+}
+
+#closeModalBtn{
+  background-color: grey;
+  color: white;
+}
+.modal-body{
+  padding: none;
+}
+.modal-footer{
+  border-top: none;
+}
+
+.form-group input{
+  width: 80%;
+}
