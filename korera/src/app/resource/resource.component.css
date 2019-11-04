@@ -111,9 +111,6 @@ img{
 .modal-body{
   padding: none;
 }
-.modal-footer{
-  border-top: none;
-}
 
 .form-group input{
   width: 80%;
