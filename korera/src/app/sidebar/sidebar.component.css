@@ -1,3 +1,8 @@
+* {
+margin: 0;
+padding: 0;
+}
+
 body {
   background-color: black;
   color: white;
@@ -9,4 +14,28 @@ body {
   font-style: bold;
   font-weight: lighter;
   border-right:2px solid black;
+}
+
+/* Unvisited link */
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+/* Visited link */
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+/* Mouse over link */
+a:hover {
+  color: gray;
+  text-decoration: none;
+}
+
+/* Selected link */
+a:active {
+  color: #F26720;
+  text-decoration: none;
 }
