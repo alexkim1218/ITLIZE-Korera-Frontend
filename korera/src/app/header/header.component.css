@@ -1,57 +1,67 @@
 * {
-margin: 0;
-padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  border-bottom: 2px solid black;
   background-color: white;
   color: black;
-  border-bottom: 2px solid black;
+}
+
+button {
+  vertical-align: middle;
+  border: none;
 }
 
 img {
   vertical-align: middle;
+  border: none;
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 40px;
 }
 
 h3 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: lighter;
 }
 
-/* Create columns that floats next to each other */
-.columnLogo {
+/* Column for Header Icon */
+.columnHeader {
   float: left;
-  width: 370px;
+  width: 275px;
 }
 
+/* Column for Project Name */
 .columnProject {
   float: left;
-  width: 60%;
   text-align: center;
-  line-height: 80px;
+  width: 60%;
+  line-height: 60px;
 }
 
+/* Column for User Icon */
 .columnUser {
   float: left;
-  width: 50px;
-  line-height: 80px;
+  width: 40px;
+  line-height: 60px;
 }
 
+/* Column for Title Name */
 .columnTitle {
   float: left;
-  width: 12%;
   text-align: center;
-  line-height: 80px;
+  width: 12%;
+  line-height: 60px;
 }
 
+/* Column for Question Icon */
 .columnQuestion {
   float: left;
-  width: 50px;
-  line-height: 80px;
+  width: 40px;
+  line-height: 60px;
 }
 
 /* Clear floats after the columns */
@@ -59,4 +69,11 @@ h3 {
   content: "";
   display: table;
   clear: both;
+}
+
+/* User Profile Button */
+.userButton {
+  border: none;
+  cursor: pointer;
+  outline: 0;
 }

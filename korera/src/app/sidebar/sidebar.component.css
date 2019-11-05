@@ -1,41 +1,41 @@
 * {
-margin: 0;
-padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  border-right:2px solid black;
   background-color: black;
   color: white;
-  width: 370px;
-  line-height: 1.8;
+  width: 275px;
   text-align: left;
   text-indent: 40px;
-  font-size: 25px;
+  line-height: 1.8;
+  font-size: 18px;
   font-style: bold;
   font-weight: lighter;
-  border-right:2px solid black;
 }
 
 /* Unvisited link */
 a:link {
-  color: white;
   text-decoration: none;
+  color: white;
 }
 
 /* Visited link */
 a:visited {
-  color: white;
   text-decoration: none;
+  color: white;
 }
 
 /* Mouse over link */
 a:hover {
-  color: gray;
   text-decoration: none;
+  color: gray;
 }
 
 /* Selected link */
 a:active {
-  color: #F26720;
   text-decoration: none;
+  color: #F26720;
 }
