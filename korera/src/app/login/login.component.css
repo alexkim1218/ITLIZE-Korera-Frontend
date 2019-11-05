@@ -1,15 +1,123 @@
+@media only screen and (max-width: 1000px) {
+  .btn {
+    font-size: 10px !important;
+  }
+  label {
+    font-size: 10px !important;
+  }
+}
+
+@media only screen and (max-width: 1260px){
+  form{
+    width: 250px !important;
+  }
+  .container > div > div{
+    width: 250px !important;
+  }
+}
+
 .container > div > div{
   margin-top: 6vh !important;
   margin: auto;
   width: 20vw;
 }
 
-.container > div > div a{
-  margin-left: 7.5vw;
-  font-size: 12px;
-}
 
 #rememberMeId{
   font-weight: lighter !important;
   font-size: 10px;
 }
+
+.container > div{
+  height: 250px;
+}
+
+h1{
+  text-align: center;
+  font-style: italic;
+  color: orange;
+  text-shadow: -0.1px 0 black, 0 0.1px black, 0.1px 0 black, 0 -0.1px black
+}
+
+.btn {
+  color: white;
+  background-color: orangered;
+  height: 5vh;
+}
+
+.btn-primary {
+  background-color: orangered;
+  margin-top: 1vh;
+  width: 100%;
+  height: 7vh;
+  font-size: 1vw;
+  border-color: none;
+}
+
+.btn-secondary {
+  background-color: #d8581d;
+  margin-top: 1vh;
+  width: 100%;
+  height: 7vh;
+  font-size: 1vw;
+}
+
+
+.form-group .ng-touched{
+  background-color: beige;
+  text-align: left !important;
+  display: inline-block;
+}
+
+label{
+  font-weight: bold;
+  font-size: 1vw;
+}
+
+form {
+  width: 20vw;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+#checkbox {
+  width: auto;
+  height: auto;
+}
+
+.form-group input{
+  margin-top: 1vh;
+  width: 98%;
+  height: 7vh;
+}
+
+.errorGroup {
+  color: red;
+  font-size: 12px;
+}
+
+#login-btn{
+  border-color:none;
+}
+
+.btn:disabled{
+  opacity: 1 !important;
+}
+.btn-primary:disabled {
+  border-color: none !important;
+}
+#signup-btn{
+  width: 70%;
+  font-size: 12px;
+}
+
+.row .col{
+  padding: 0;
+}
+
+.row .col a{
+  width: 100%;
+  margin: 0;
+}
+
+

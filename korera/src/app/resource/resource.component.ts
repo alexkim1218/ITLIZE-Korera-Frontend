@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { ResourceService } from './resource.service';
+import { Resource } from '../resource';
 
 @Component({
   selector: 'app-resource',
@@ -8,28 +9,46 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./resource.component.css']
 })
 export class ResourceComponent implements OnInit {
-  table = [
-    {code: '12345', name: 'Resource 1'},
-    {code: '12346', name: 'Resource 2'}
-  ];
-  search = this.table.filter(s => s.name.includes(''));
+
+  table: Resource[];
+  // table = [
+  //   {code: '12345', name: 'Resource 1'},
+  //   {code: '12346', name: 'Resource 2'},
+  //   {code: '12345', name: 'Resource 3'},
+  //   {code: '12346', name: 'Resource 4'},
+  //   {code: '12345', name: 'Resource 5'},
+  //   {code: '12346', name: 'Resource 6'},
+  //   {code: '12345', name: 'Resource 7'},
+  //   {code: '12346', name: 'Resource 8'},
+  //   {code: '12345', name: 'Resource 9'},
+  //   {code: '12345', name: 'Resource 5'}
+  // ];
+  search: Resource[];
   addingRow = true;
   closeResult: string;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,
+              private resourceService: ResourceService) { }
 
   ngOnInit() {
+    this.resourceService.getAllResources().subscribe(resp => {
+      // access the body directly, which is typed as `Config`.
+      this.table = resp;
+      this.search = this.table.filter(s => s.resourceName.includes(''));
+
+      console.log(this.table);
+    });
   }
 
-  filterSearch(searchString) {
-    this.search = this.table.filter(s => s.name.toLowerCase().includes(searchString.value.toLowerCase()));
+  filterSearch(searchString: any) {
+    this.search = this.table.filter(s => s.resourceName.toLowerCase().includes(searchString.value.toLowerCase()));
   }
 
   setAddRow(val: boolean) {
     this.addingRow = val;
   }
 
-  addRow(resourceNameInput, resourceCodeInput) {
+  addRow(resourceNameInput: any, resourceCodeInput: any) {
     // TODO
     console.log(resourceNameInput.value);
     console.log(resourceCodeInput.value);

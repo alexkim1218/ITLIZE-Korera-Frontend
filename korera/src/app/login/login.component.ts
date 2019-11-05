@@ -1,18 +1,33 @@
 import { Component } from '@angular/core';
-import {NgForm} from '@angular/forms';
-
+import { NgForm } from '@angular/forms';
+import { LoginService } from './login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
+  credentials: string;
   onSubmit(f: NgForm) {
-    console.log(f.value);  // { first: '', last: '' }
-    console.log(f.valid);  // false
+    if (f.valid) {
+      console.log(f.value.username);
+      console.log(f.value.password);
+
+      this.credentials = '{\
+          "username": "' + f.value.username + '",\
+          "password": "' + f.value.password +  '"}';
+
+      console.log(JSON.parse(this.credentials));
+      this.loginService.login(JSON.parse(this.credentials)).subscribe(resp => {
+        console.log(resp);
+        // TODO
+        // SET TOKEN IF SUCCESSFUL
+        // IF NOT, login failed
+      });
+    }
   }
 
   log(x: string) {

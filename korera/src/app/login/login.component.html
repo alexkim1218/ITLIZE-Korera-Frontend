@@ -3,7 +3,6 @@
 
     <div>
         <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-
           <div class="form-group">
             <label for="username">Username</label> <br>
             <input type="email"
@@ -31,7 +30,7 @@
             </div>
           </div>
 
-          <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Login</button>
+          <button [disabled]="!f.valid" type="submit" class="btn btn-primary" id="login-btn">Login</button>
 
           <div class="form-group">
               <input id="checkbox" type="checkbox" name="rememberMe" value="checked" ngModel #rememberMe="ngModel">
@@ -39,8 +38,14 @@
           </div>
 
         </form>
-        <div>
-          <button class="btn">Sign Up</button><a>Forgot Password?</a>
+        <div class="row">
+          <div class="col">
+              <button id="signup-btn" class="btn">Sign Up</button>
+          </div>
+          <div class="col text-right">
+              <a style="font-size: 12px;">Forgot Password?</a>
+          </div>
+
         </div>
     </div>
 

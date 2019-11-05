@@ -20,7 +20,7 @@
               </button>
 
               <div ngbDropdownMenu aria-labelledby="plusBtn" id="dropdown-menu">
-                <button ngbDropdownItem (click)="setAddRow(true)">
+                <button ngbDropdownItem (click)="setAddRow(true);">
                   <div class="row">
                       <div class="col-4">
                           <img src="assets/img/row.svg"
@@ -71,12 +71,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let t of search" class="row">
-          <td class="col">{{t.name}}</td>
-          <td class="col">{{t.code}}</td>
+          <td class="col">{{t.resourceName}}</td>
+          <td class="col">{{t.resourceCode}}</td>
         </tr>
 
-        <tr *ngIf="addingRow" class="row">
-
+        <tr *ngIf="addingRow" class="row" #addRowElem>
           <td class="col">
             <input type="text" style="width: 100%" name="resourceName" #resourceNameInput>
           </td>
@@ -115,5 +114,5 @@
         <button type="button" (click)="modal.close('Cancel click')">Cancel</button>
       </div>
     </ng-template>
-    <pre>{{closeResult}}</pre>
+    <!-- <pre>{{closeResult}}</pre> -->
 </div>

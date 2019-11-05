@@ -30,11 +30,19 @@ tbody tr td{
 
 table{
   border: 1px solid #dee2e6;
+
 }
 
 thead, tbody, tr{
   width: 100%;
 }
+
+tbody{
+  height: 400px;
+  overflow-y: scroll;
+  display: block;
+}
+
 tr{
   margin: 0;
 }

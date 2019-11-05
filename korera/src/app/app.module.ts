@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SignupComponent } from './signup/signup.component';
 import { ResourceComponent } from './resource/resource.component';
 import {NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import {NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     MatSidenavModule,
     NgbDropdownModule,
     NgbModalModule,
+    HttpClientModule,
     AlertModule.forRoot()
   ],
   providers: [],
