@@ -7,6 +7,7 @@ body {
   border-bottom: 2px solid black;
   background-color: white;
   color: black;
+  height: 60px;
 }
 
 button {
@@ -76,4 +77,34 @@ h3 {
   border: none;
   cursor: pointer;
   outline: 0;
+}
+
+/* Popup Dialog Upper Layout */
+.userMenu1 {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+/* Popup Dialog Lower Layout */
+.userMenu2 {
+  background-color: gray;
+  color: black;
+  text-align: center;
+}
+
+/* Popup Dialog Profile Button */
+.profileButton {
+  float: left;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+}
+
+/* Popup Dialog Sign Out Button */
+.signoutButton {
+  float: right;
+  background-color: white;
+  color: black;
+  font-size: 20px;
 }
