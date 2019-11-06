@@ -8,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SignupComponent } from './signup/signup.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent, UserDialog } from './header/header.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     LoginComponent,
     SignupComponent,
     HeaderComponent,
+    UserDialog,
     SidebarComponent
   ],
   imports: [
@@ -27,7 +29,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     // MatCheckboxModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    MatDialogModule
+  ],
+  entryComponents: [
+    HeaderComponent,
+    UserDialog
   ],
   providers: [],
   bootstrap: [
@@ -35,4 +42,4 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     HeaderComponent
   ]
 })
-export class AppModule { }
+export class AppModule {}

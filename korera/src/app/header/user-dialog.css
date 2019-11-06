@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+/* Upper Layout */
+.userMenu1 {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+/* Lower Layout */
+.userMenu2 {
+  background-color: gray;
+  color: black;
+  text-align: center;
+}
+
+/* Profile Button */
+.profileButton {
+  float: left;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+}
+
+/* Sign Out Button */
+.signoutButton {
+  float: right;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+}
