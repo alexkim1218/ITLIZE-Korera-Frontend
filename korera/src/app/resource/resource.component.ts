@@ -1,7 +1,8 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceService } from './resource.service';
 import { Resource } from '../resource';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resource',
@@ -26,18 +27,27 @@ export class ResourceComponent implements OnInit {
   search: Resource[];
   addingRow = true;
   closeResult: string;
+  csvContent: string;
 
   constructor(private modalService: NgbModal,
-              private resourceService: ResourceService) { }
+              private resourceService: ResourceService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.resourceService.getAllResources().subscribe(resp => {
-      // access the body directly, which is typed as `Config`.
+    this.resourceService.getAllResources().subscribe(
+      resp => {
+      // get resource table from database
       this.table = resp;
       this.search = this.table.filter(s => s.resourceName.includes(''));
-
-      console.log(this.table);
-    });
+      console.log(this.table); },
+      error => {
+        if ( error.error.status === 401 ) {
+          alert('You are not logged in or session timed out');
+          this.router.navigateByUrl('/login');
+        }
+        console.log(error.error.status);
+      }
+    );
   }
 
   filterSearch(searchString: any) {
@@ -77,5 +87,21 @@ export class ResourceComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  importCsv(inputFile: HTMLInputElement) {
+    const files = inputFile.files;
+    if (files && files.length) {
+      const fileToRead = files[0];
+      const fileReader = new FileReader();
+      fileReader.onload = this.onFileLoad;
+      fileReader.readAsText(fileToRead, 'UTF-8');
+   }
+  }
+
+  onFileLoad(fileLoadedEvent) {
+    const textFromFileLoaded = fileLoadedEvent.target.result;
+    this.csvContent = textFromFileLoaded;
+    console.log( this.csvContent );
   }
 }

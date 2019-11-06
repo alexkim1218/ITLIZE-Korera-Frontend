@@ -5,10 +5,8 @@
         <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
           <div class="form-group">
             <label for="username">Username</label> <br>
-            <input type="email"
-            class="form-control" id="username"
-            name="username"
-            ngModel required email #username="ngModel" (change)="log(username)">
+            <input type="email" class="form-control" id="username" name="username"
+            [ngModel]='user_name' required email #username="ngModel">
             <div [hidden]=" !username.touched && (username.valid || username.pristine)"
             class="errorGroup">
               <div *ngIf="username.errors">
@@ -30,17 +28,17 @@
             </div>
           </div>
 
-          <button [disabled]="!f.valid" type="submit" class="btn btn-primary" id="login-btn">Login</button>
+          <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
 
           <div class="form-group">
-              <input id="checkbox" type="checkbox" name="rememberMe" value="checked" ngModel #rememberMe="ngModel">
+              <input id="checkbox" type="checkbox" name="rememberMe" value="checked" [ngModel]="rememberMe">
               <label id="rememberMeId" for="rememberMe">Remember me</label>
           </div>
 
         </form>
         <div class="row">
           <div class="col">
-              <button id="signup-btn" class="btn">Sign Up</button>
+              <a routerLink="/signup"><button id="signup-btn" class="btn">Sign Up</button></a>
           </div>
           <div class="col text-right">
               <a style="font-size: 12px;">Forgot Password?</a>

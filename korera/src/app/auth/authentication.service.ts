@@ -9,19 +9,22 @@ const httpOptions = {
   responseType: 'text' as 'json'
 };
 
-const options = {responseType: 'text'};
-
 const loginUrl = 'http://localhost:8080/Korera/user/login';
+const signupUrl = 'http://localhost:8080/Korera/user/createUser';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
   login(credentials: any): Observable<string> {
     return this.http.post<string>(loginUrl, credentials, httpOptions);
+  }
+
+  signup(user: any): Observable<string> {
+    return this.http.post<string>(signupUrl, user, httpOptions);
   }
 
 }

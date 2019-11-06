@@ -44,13 +44,17 @@
                 </button>
                 <button ngbDropdownItem>
                     <div class="row">
-                      <div class="col-4">
-                          <img src="assets/img/excel.svg"
-                          alt="csv-format-img">
-                      </div>
-                      <div class="col-8">
-                        Import CSV
-                      </div>
+                      <label for="csv">
+                        <div class="col-4">
+                            <img src="assets/img/excel.svg"
+                            alt="csv-format-img">
+                        </div>
+                        <div class="col-8">
+                          Import CSV
+                        </div>
+                      </label>
+                      <input type="file" name="file" id="csv" accept=".csv"
+                      (change)="importCsv(csvFile)" #csvFile>
                     </div>
                 </button>
               </div>
