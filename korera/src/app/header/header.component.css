@@ -7,7 +7,7 @@ body {
   border-bottom: 2px solid black;
   background-color: white;
   color: black;
-  height: 60px;
+  height: 85px;
 }
 
 button {
@@ -32,7 +32,7 @@ h3 {
 /* Column for Header Icon */
 .columnHeader {
   float: left;
-  width: 275px;
+  width: 260px;
 }
 
 /* Column for Project Name */
@@ -40,14 +40,14 @@ h3 {
   float: left;
   text-align: center;
   width: 60%;
-  line-height: 60px;
+  line-height: 85px;
 }
 
 /* Column for User Icon */
 .columnUser {
   float: left;
   width: 40px;
-  line-height: 60px;
+  line-height: 85px;
 }
 
 /* Column for Title Name */
@@ -55,14 +55,14 @@ h3 {
   float: left;
   text-align: center;
   width: 12%;
-  line-height: 60px;
+  line-height: 85px;
 }
 
 /* Column for Question Icon */
 .columnQuestion {
   float: left;
   width: 40px;
-  line-height: 60px;
+  line-height: 85px;
 }
 
 /* Clear floats after the columns */

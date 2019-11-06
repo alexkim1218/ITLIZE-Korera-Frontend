@@ -3,8 +3,13 @@
   padding: 0;
 }
 
+button {
+  vertical-align: middle;
+}
+
 h2 {
-  font-size: 40px;
+  font-size: 30px;
+  font-weight: lighter;
 }
 
 h3 {
@@ -13,31 +18,45 @@ h3 {
 }
 
 /* Upper Layout */
-.userMenu1 {
+.userDialog1 {
   background-color: black;
   color: white;
   text-align: center;
+  vertical-align: bottom;
+  line-height: 1.5;
+  width: 350px;
+  height: 150px;
 }
 
 /* Lower Layout */
-.userMenu2 {
+.userDialog2 {
   background-color: gray;
   color: black;
   text-align: center;
+  vertical-align: middle;
+  line-height: 1.0;
+  width: 350px;
+  height: 70px;
 }
 
 /* Profile Button */
 .profileButton {
   float: left;
+  margin-left: 20px;
   background-color: white;
   color: black;
   font-size: 20px;
+  width: 80px;
+  height: 40px;
 }
 
 /* Sign Out Button */
 .signoutButton {
   float: right;
+  margin-right: 20px;
   background-color: white;
   color: black;
   font-size: 20px;
+  width: 100px;
+  height: 40px;
 }

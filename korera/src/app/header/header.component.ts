@@ -15,9 +15,10 @@ export class HeaderComponent implements OnInit {
 
   openDialog(): void {
       const dialogRef = this.dialog.open(UserDialog, {
-        width: '350px'
+        panelClass: 'custom-dialog-container',
+        position: {top: '85px', right: '8%'}
       });
-    }
+  }
 }
 
 @Component({
