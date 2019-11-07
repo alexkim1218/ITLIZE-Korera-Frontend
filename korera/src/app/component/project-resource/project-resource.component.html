@@ -1,0 +1,32 @@
+<div class="project">
+<table class="table table-striped title">
+    <th>
+        <span>Resource Catalog</span>
+
+    <button class="icon" id="import" (click)='import()'>    
+        <mat-icon class="import_icon" svgIcon="import" [ngStyle]="{'color':'white','height':'70%', 'position':'relative','right':'7px'}"></mat-icon>
+    </button>
+    <div ngbDropdown class="dropdown">
+        <button class="icon" ngbDropdownToggle>    
+            <mat-icon class="import_icon" svgIcon="list" [ngStyle]="{'color':'white','height':'70%', 'position':'relative','right':'7px'}"></mat-icon>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="selectAll()">Select All</button>
+            <button ngbDropdownItem (click)="clearAll()">Clear Selection</button>
+          </div>
+    </div>
+    </th>
+</table>
+
+<table class="table table-striped main-table">
+    <tr class = "table_header">
+        <th *ngFor="let field of fields | slice: 1">{{field}}</th>
+    </tr>
+    <tr class = "table_row" *ngFor="let resource of resources; index as i">
+        <td *ngFor="let field of fields | slice: 1; index as id">
+            <input type="checkbox" *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)'>
+            {{resource[field]}}
+        </td>
+    </tr>
+</table>
+</div>

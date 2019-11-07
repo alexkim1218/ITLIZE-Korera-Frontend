@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  border-right:2px solid black;
+  background-color: black;
+  color: white;
+  text-align: left;
+  text-indent: 40px;
+  line-height: 1.8;
+  font-size: 18px;
+  font-style: bold;
+  font-weight: lighter;
+  width: 260px;
+}
+
+/* Unvisited link */
+a:link {
+  text-decoration: none;
+  color: white;
+}
+
+/* Visited link */
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+/* Mouse over link */
+a:hover {
+  text-decoration: none;
+  color: gray;
+}
+
+/* Selected link */
+a:active {
+  text-decoration: none;
+  color: #F26720;
+}

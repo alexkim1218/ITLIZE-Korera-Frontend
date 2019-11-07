@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Project } from './component/project/project'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'korera';
+  currentProject: Project;
 }

@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+/* Upper Layout */
+.questionDialog1 {
+  background-color: gray;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.0;
+  width: 350px;
+  height: 50px;
+}
+
+/* Lower Layout */
+.questionDialog2 {
+  background-color: black;
+  color: white;
+  text-align: center;
+  vertical-align: bottom;
+  line-height: 1.2;
+  width: 350px;
+  height: 170px;
+}

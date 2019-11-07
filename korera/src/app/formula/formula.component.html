@@ -1,0 +1,62 @@
+<p id="title">{{ selectedValue }}</p>
+<hr>
+
+<div id="selectDiv">
+    <select id="projectDropdown" class="custom-select" [(ngModel)]="selectedValue" (ngModelChange)="updateProject()">
+        <option *ngFor="let element of projectList">
+            {{element.name}}
+        </option>
+    </select>
+</div>
+
+<div id="selectDiv">
+    <div id="projectDropdown"></div>
+</div>
+
+<!--  Old table before changing to bootstrap
+<div id="table">
+    <div id="tableHeader">
+        <p id="tableHeaderText">QUANTITY SURVEY</p>
+    </div>
+    <table>
+        <thead>
+            <td class="tableTab">NAME</td>
+            <td class="tableTab">COST_CODE</td>
+        </thead>
+        <tbody>
+            <tr *ngFor="let element of dataSource">
+                <td class="tableElement">{{element.name}}</td>
+                <td class="tableElement">{{element.costCode}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+-->
+
+<div id="table" class="container-fluid">
+    <div id="tableHeader">
+        <p id="tableHeaderText">QUANTITY SURVEY</p>
+    </div>
+    <table>
+        <div class="row">
+            <!--"NAME" and "COST_CODE" are required-->
+            <div class="col tableTab">NAME</div>
+            <div class="col tableTab">COST_CODE</div>
+            <div class="col tableTab" *ngFor="let name of additionalColumnNames">
+                {{name}}
+            </div>
+        </div>
+        <div class="row" *ngFor="let element of dataSource">
+            <!--"name" and "costCode" will always exist-->
+            <div class="col tableElement">{{element.name}}</div>
+            <div class="col tableElement">{{element.costCode}}</div>
+            <div class="col tableElement" *ngFor="let addData of element.addData">
+                {{addData}}
+            </div>
+        </div>
+    </table>
+</div>
+
+<div id="quantitySurveyLink">
+    <a href="">Edit Quantity Survey Template</a>
+</div>

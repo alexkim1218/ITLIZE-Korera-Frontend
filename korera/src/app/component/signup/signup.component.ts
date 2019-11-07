@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-
+  
   constructor(private authService: AuthenticationService, private router: Router) { }
 
   onSubmit(f: NgForm) {
