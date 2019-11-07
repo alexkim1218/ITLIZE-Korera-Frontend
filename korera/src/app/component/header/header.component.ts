@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -35,10 +36,16 @@ export class HeaderComponent implements OnInit {
 })
 export class UserDialog {
 
-  constructor(public dialogRef: MatDialogRef<UserDialog>) {}
+  constructor(public dialogRef: MatDialogRef<UserDialog>, private router: Router) {}
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  signOut() {
+    localStorage.removeItem('token');
+    this.dialogRef.close();
+    this.router.navigateByUrl('/login');
   }
 }
 
