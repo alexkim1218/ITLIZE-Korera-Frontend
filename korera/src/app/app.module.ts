@@ -2,15 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './component/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SignupComponent } from './signup/signup.component';
-import { HeaderComponent, UserDialog, QuestionDialog } from './header/header.component';
+import { SignupComponent } from './component/signup/signup.component';
+import { HeaderComponent, UserDialog, QuestionDialog } from './component/header/header.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
