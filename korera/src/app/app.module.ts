@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ProjectComponent } from './component/project/project.component';
+import { ProjectResourceComponent } from './component/project-resource/project-resource.component';
+import { ProjectProjectComponent } from './component/project-project/project-project.component';
 import appRoutes from './routerConfig';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
@@ -16,6 +18,13 @@ import { HeaderComponent, UserDialog, QuestionDialog } from './component/header/
 import { MatDialogModule } from '@angular/material/dialog';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 
+import { MatCheckboxModule } from '@angular/material';
+import { MatIconModule } from "@angular/material/icon";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from "@angular/common/http";
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,11 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
     FormsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    // MatCheckboxModule
+    MatCheckboxModule,
+    NgbModule,
+    MatIconModule,
+    HttpClientModule,
+    NgZorroAntdModule,
     RouterModule.forRoot(appRoutes),
     NgbModule,
   ],

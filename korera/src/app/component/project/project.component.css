@@ -1,0 +1,44 @@
+.resource {
+    float: left;
+    display: inline;
+    padding: 10px;
+}
+
+.project {
+    float: left;
+    display: inline;
+    padding: 10px;
+}
+
+#submit {
+    height: 30px;
+    position: relative;
+    background-color: orange;
+    color: white;
+    border: none;
+    float: right;
+    right: 50px;
+}
+
+#submit_word {
+    margin: 5px 5px;
+}
+
+.main {
+    display: table;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+.tables {
+    position: relative;
+    display: table;
+    padding: 10px;
+}
+
+.project_dropdown {
+    text-align: right;
+    margin: 20px;
+    right: 30px;
+}
+
