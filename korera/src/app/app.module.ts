@@ -5,12 +5,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectComponent } from './component/project/project.component';
 import { ProjectResourceComponent } from './component/project-resource/project-resource.component';
 import { ProjectProjectComponent } from './component/project-project/project-project.component';
-import appRoutes from './routerConfig';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { AlertModule } from 'ngx-bootstrap';
+import { ResourceComponent } from './component/resource/resource.component';
+import {NgbDropdownModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
 import { FormulaComponent } from './formula/formula.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SignupComponent } from './component/signup/signup.component';
@@ -20,7 +22,6 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 import { MatCheckboxModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
@@ -31,6 +32,7 @@ import en from '@angular/common/locales/en';
     AppComponent,
     LoginComponent,
     SignupComponent,
+    ResourceComponent,
     FormulaComponent,
     HeaderComponent,
     UserDialog,
@@ -39,9 +41,13 @@ import en from '@angular/common/locales/en';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    NgbDropdownModule,
+    NgbModalModule,
+    AlertModule.forRoot(),
     MatCheckboxModule,
     NgbModule,
     MatIconModule,
