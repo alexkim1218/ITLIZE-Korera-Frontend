@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './resource.component.html',
   styleUrls: ['./resource.component.css']
 })
+
 export class ResourceComponent implements OnInit {
 
   table: Resource[];
@@ -104,5 +105,8 @@ export class ResourceComponent implements OnInit {
     const textFromFileLoaded = fileLoadedEvent.target.result;
     this.csvContent = textFromFileLoaded;
     console.log( this.csvContent );
+    // const result = csv.parse(this.csvContent);
+    // console.log(result);
+
   }
 }
