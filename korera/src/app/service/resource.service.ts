@@ -20,6 +20,14 @@ export class ResourceService {
   constructor(private http: HttpClient) { }
 
   getAllResources(): Observable<Resource[]> {
+
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        // tslint:disable-next-line: max-line-length
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      })
+    };
+
     console.log('calling get all resources');
     return this.http.get<Resource[]>(getAllResourceUrl, this.httpOptions);
   }
