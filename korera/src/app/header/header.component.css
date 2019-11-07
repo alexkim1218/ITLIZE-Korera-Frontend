@@ -78,3 +78,10 @@ h3 {
   cursor: pointer;
   outline: 0;
 }
+
+/* Question Button */
+.questionButton {
+  border: none;
+  cursor: pointer;
+  outline: 0;
+}
