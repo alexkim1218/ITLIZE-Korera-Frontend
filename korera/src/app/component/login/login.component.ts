@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthenticationService } from '../auth/authentication.service';
+import { AuthenticationService } from '../../service/auth/authentication.service';
 import { Router } from '@angular/router';
 
 @Component({

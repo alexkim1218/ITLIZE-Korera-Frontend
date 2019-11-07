@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ResourceService } from './resource.service';
-import { Resource } from '../resource';
+import { ResourceService } from '../../service/resource.service';
+import { Resource } from '../../resource';
 import { Router } from '@angular/router';
 
 @Component({
@@ -39,13 +39,14 @@ export class ResourceComponent implements OnInit {
       // get resource table from database
       this.table = resp;
       this.search = this.table.filter(s => s.resourceName.includes(''));
-      console.log(this.table); },
+      // console.log(this.table);
+      },
       error => {
-        if ( error.error.status === 401 ) {
+        if ( error.status === 401 ) {
           alert('You are not logged in or session timed out');
           this.router.navigateByUrl('/login');
         }
-        console.log(error.error.status);
+        // console.log(error.error.status);
       }
     );
   }
