@@ -1,0 +1,80 @@
+#selectDiv{
+    /*Parent element of the projectDropdown select box*/
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+#projectDropdown {
+    /*The "select" box with options to select different projects*/
+    width: 200px;
+    height: 35px;
+    align-content: right;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#table {
+    /*The full table surounding div*/
+    margin: 10px;
+    border-style: solid;
+    border-top-style: none;
+    border-color: lightgrey;
+    border-width: 2px;
+    padding-top: 0px;
+}
+
+#tableHeader {
+    /*The single header at the top of the table that gives it's title*/
+    background-color: grey;
+    color: white;
+    text-align: left;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+#tableHeaderText {
+    /*The text in the single top header*/
+    padding-top: 5px;
+    padding-bottom: 20px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.tableTab{
+    /*The column headers*/
+    background-color: #dbdbdb;
+    font-weight: bold;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: 2px;
+    margin: 0px;
+    margin-top: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.tableElement {
+    padding-left: 20px;
+    text-align: left;
+}
+
+#title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+}
+
+#quantitySurveyLink, a {
+    color: blueviolet;
+    text-align: left;
+    padding-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
