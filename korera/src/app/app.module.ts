@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectComponent } from './component/project/project.component';
 import { ProjectResourceComponent } from './component/project-resource/project-resource.component';
 import { ProjectProjectComponent } from './component/project-project/project-project.component';
@@ -53,7 +52,7 @@ import en from '@angular/common/locales/en';
     MatIconModule,
     HttpClientModule,
     NgZorroAntdModule,
-    RouterModule.forRoot(appRoutes),
+    // RouterModule.forRoot(appRoutes),
     NgbModule,
   ],
   exports: [
