@@ -1,17 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectComponent } from './component/project/project.component';
 import { ProjectResourceComponent } from './component/project-resource/project-resource.component';
 import { ProjectProjectComponent } from './component/project-project/project-project.component';
-
+import appRoutes from './routerConfig';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './component/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import {MatCheckboxModule} from '@angular/material/checkbox';
+
+import { FormulaComponent } from './formula/formula.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './component/signup/signup.component';
+import { HeaderComponent, UserDialog, QuestionDialog } from './component/header/header.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 import { MatCheckboxModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
@@ -25,7 +30,12 @@ import en from '@angular/common/locales/en';
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    FormulaComponent,
+    HeaderComponent,
+    UserDialog,
+    QuestionDialog,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +47,22 @@ import en from '@angular/common/locales/en';
     MatIconModule,
     HttpClientModule,
     NgZorroAntdModule,
-    // MatCheckboxModule
+    RouterModule.forRoot(appRoutes),
+    NgbModule,
+  ],
+  exports: [
+    HeaderComponent,
+    MatDialogModule
+  ],
+  entryComponents: [
+    HeaderComponent,
+    UserDialog,
+    QuestionDialog
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    HeaderComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {}

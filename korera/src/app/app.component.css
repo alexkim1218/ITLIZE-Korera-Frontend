@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidebar Toggle Button */
+.sidebarButton {
+  position: absolute;
+  border: none;
+  cursor: pointer;
+  outline: 0;
+}
