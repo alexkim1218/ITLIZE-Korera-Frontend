@@ -18,11 +18,11 @@ export class ProjectResourceComponent implements OnInit {
   constructor(private projectService : ProjectService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon(
       "import",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/import_arrow.svg")
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/import_arrow.svg")
     );
     this.matIconRegistry.addSvgIcon(
       "list",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/list.svg")
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/list.svg")
     );
   }
 

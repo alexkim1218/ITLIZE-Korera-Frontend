@@ -17,7 +17,7 @@ export class ProjectProjectComponent implements OnInit {
     this.projectService.projectResources$.subscribe((newResource) => {this.resources = newResource})
     this.matIconRegistry.addSvgIcon(
       "trash",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/trash.svg")
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/trash.svg")
     );
   }
   
