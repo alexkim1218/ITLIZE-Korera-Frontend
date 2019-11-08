@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Project } from '../../project'
+import { Project } from '../../project';
 import { UserService } from 'src/app/service/user.service';
 import { flatMap } from 'rxjs/operators';
 import { ProjectSelectorService } from 'src/app/service/project-selector.service';

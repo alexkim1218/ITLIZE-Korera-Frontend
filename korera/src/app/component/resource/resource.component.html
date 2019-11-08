@@ -109,12 +109,12 @@
         <form style="width: 100%">
           <div class="form-group">
               <label for="colName">Column Name:</label>
-              <input id="colName" type="text">
+              <input id="colName" type="text" #colNameInput>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" (click)="modal.close('Add click')">Add</button>
+        <button type="button" (click)="modal.close('Add click'); addColumn(colNameInput)">Add</button>
         <button type="button" (click)="modal.close('Cancel click')">Cancel</button>
       </div>
     </ng-template>
