@@ -1,4 +1,4 @@
-import { Project } from '../component/project/project'
+import { Project } from '../project'
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';

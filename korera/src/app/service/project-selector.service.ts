@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Project } from '../component/project/project';
+import { Project } from '../project';
 import { Subject, Observable } from 'rxjs';
 
 const indexUrl = "http://localhost:8080/Korera"
@@ -12,7 +12,7 @@ const getProjectsUrl = indexUrl + "/project/getUserProjects"
 export class ProjectSelectorService {
 
   // Observable of the current project
-  currentProject$: Observable<Project> 
+  currentProject$: Observable<Project>
 
   private currentProjectSubject: Subject<Project>
 
@@ -30,6 +30,10 @@ export class ProjectSelectorService {
   
   loadProjects(uid: number) {
     return this._http.get<Project[]>(getProjectsUrl + "/" + uid, this.httpOptions)
+  }
+
+  loadDefaultProject() {
+    
   }
 
   changeCurrentProject(project: Project) {
