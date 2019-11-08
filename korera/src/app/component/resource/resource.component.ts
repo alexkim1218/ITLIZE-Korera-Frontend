@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceService } from '../../service/resource.service';
+import { ProjectSelectorService } from '../../service/project-selector.service';
 import { Resource } from '../../resource';
 import { Router } from '@angular/router';
 
@@ -34,6 +35,7 @@ export class ResourceComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
               private resourceService: ResourceService,
+              private projectSelectorService: ProjectSelectorService,
               private router: Router) { }
 
   ngOnInit() {
