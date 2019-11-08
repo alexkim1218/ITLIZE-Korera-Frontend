@@ -32,6 +32,10 @@ export class ProjectSelectorService {
     return this._http.get<Project[]>(getProjectsUrl + '/' + uid, this.httpOptions);
   }
 
+  loadDefaultProject() {
+    
+  }
+
   changeCurrentProject(project: Project) {
     this.currentProjectSubject.next(project);
   }
