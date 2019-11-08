@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { ProjectComponent } from './component/project/project.component';
 import { ProjectResourceComponent } from './component/project-resource/project-resource.component';
 import { ProjectProjectComponent } from './component/project-project/project-project.component';
@@ -12,7 +11,7 @@ import { AlertModule } from 'ngx-bootstrap';
 import { ResourceComponent } from './component/resource/resource.component';
 import {NgbDropdownModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
-import { FormulaComponent } from './formula/formula.component';
+import { FormulaComponent } from './component/formula/formula.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SignupComponent } from './component/signup/signup.component';
 import { HeaderComponent, UserDialog, QuestionDialog } from './component/header/header.component';
@@ -36,7 +35,10 @@ import en from '@angular/common/locales/en';
     HeaderComponent,
     UserDialog,
     QuestionDialog,
-    SidebarComponent
+    SidebarComponent,
+    ProjectComponent,
+    ProjectResourceComponent,
+    ProjectProjectComponent
   ],
   imports: [
     BrowserModule,
