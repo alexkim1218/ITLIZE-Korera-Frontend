@@ -14,18 +14,20 @@ export class ResourceComponent implements OnInit {
 
   table: Resource[];
   // table = [
-  //   {code: '12345', name: 'Resource 1'},
-  //   {code: '12346', name: 'Resource 2'},
-  //   {code: '12345', name: 'Resource 3'},
-  //   {code: '12346', name: 'Resource 4'},
-  //   {code: '12345', name: 'Resource 5'},
-  //   {code: '12346', name: 'Resource 6'},
-  //   {code: '12345', name: 'Resource 7'},
-  //   {code: '12346', name: 'Resource 8'},
-  //   {code: '12345', name: 'Resource 9'},
-  //   {code: '12345', name: 'Resource 5'}
+  //   {code: '12345', resourceName: 'Resource 1'},
+  //   {code: '12346', resourceName: 'Resource 2'},
+  //   {code: '12345', resourceName: 'Resource 3'},
+  //   {code: '12346', resourceName: 'Resource 4'},
+  //   {code: '12345', resourceName: 'Resource 5'},
+  //   {code: '12346', resourceName: 'Resource 6'},
+  //   {code: '12345', resourceName: 'Resource 7'},
+  //   {code: '12346', resourceName: 'Resource 8'},
+  //   {code: '12345', resourceName: 'Resource 9'},
+  //   {code: '12345', resourceName: 'Resource 5'}
   // ];
   search: Resource[];
+
+  // search: [];
   addingRow = true;
   closeResult: string;
   csvContent: string;
@@ -40,7 +42,7 @@ export class ResourceComponent implements OnInit {
       // get resource table from database
       this.table = resp;
       this.search = this.table.filter(s => s.resourceName.includes(''));
-      // console.log(this.table);
+      console.log(this.table);
       },
       error => {
         if ( error.status === 401 ) {
@@ -105,8 +107,22 @@ export class ResourceComponent implements OnInit {
     const textFromFileLoaded = fileLoadedEvent.target.result;
     this.csvContent = textFromFileLoaded;
     console.log( this.csvContent );
-    // const result = csv.parse(this.csvContent);
-    // console.log(result);
 
+    const arrContent = this.csvContent.split('\n');
+    const title = arrContent[0].split(',');
+    let values = [];
+    for (let i = 1; i < arrContent.length; i++) {
+      values.push(arrContent[i].split(','));
+    }
+
+    console.log(title);
+    console.log(values);
+
+    // TODO: reset all resources and add resource here
+
+  }
+
+  addColumn(colName: HTMLInputElement) {
+    console.log(typeof colName.value);
   }
 }

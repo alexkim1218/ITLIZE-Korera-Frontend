@@ -1,4 +1,4 @@
-import { Project } from './project';
+import { Project } from '../../project';
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../service/project.service';
 
@@ -10,10 +10,10 @@ import { ProjectService } from '../../service/project.service';
 })
 export class ProjectComponent implements OnInit {
 
-  projects : Project[]
-  currentProject : Project
+  projects: Project[];
+  currentProject: Project;
 
-  constructor(private projectService : ProjectService) { }
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
 
