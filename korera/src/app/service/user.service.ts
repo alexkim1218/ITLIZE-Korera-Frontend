@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../user';
 
-const userUrl = "http://localhost:8080/user"
+const userUrl = "http://localhost:8080/Korera/user"
 const getUserUrl = userUrl + "/getUser"
 
 @Injectable({

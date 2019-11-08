@@ -6,8 +6,7 @@
     </div>
 
     <div class="columnProject">
-      <!-- TODO: CHANGE TO ACTUAL VALUE, ex: {{project}} -->
-      <h2>Project 1</h2>
+      <h2 *ngIf="project">{{project.projectName}}</h2>
     </div>
 
     <div class="columnUser">
@@ -15,8 +14,7 @@
     </div>
 
     <div class="columnTitle">
-      <!-- TODO: CHANGE TO ACTUAL VALUE, ex: {{title}} -->
-      <h3>Cost Manager</h3>
+      <h3 *ngIf="user">{{user.title}}</h3>
     </div>
 
     <div class="columnQuestion">

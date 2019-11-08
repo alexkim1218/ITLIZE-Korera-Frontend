@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ProjectSelectorService } from '../../service/project-selector.service';
+import { UserService } from '../../service/user.service';
+import { User } from '../../user';
+import { Project } from '../../project';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +12,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  user: User
+  project: Project
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+    private projectSelectorService: ProjectSelectorService,
+    private userService: UserService) {}
 
   ngOnInit() {
+    this.userService.getUser().subscribe(
+      res_user => {
+        this.user = res_user;
+        console.log(this.user);
+
+        this.projectSelectorService.loadProjects(this.user.userId).subscribe(
+          res_project => {
+            console.log(res_project);
+            this.projectSelectorService.changeCurrentProject(res_project[0]);
+          }
+        );
+      }
+    )
+
+    this.projectSelectorService.currentProject$.subscribe(
+      res_project => {
+        this.project = res_project;
+        console.log(this.project);
+      }
+    );
   }
 
   openUserDialog(): void {
@@ -36,7 +64,8 @@ export class HeaderComponent implements OnInit {
 })
 export class UserDialog {
 
-  constructor(public dialogRef: MatDialogRef<UserDialog>, private router: Router) {}
+  constructor(public dialogRef: MatDialogRef<UserDialog>,
+    private router: Router) {}
 
   onNoClick(): void {
     this.dialogRef.close();
