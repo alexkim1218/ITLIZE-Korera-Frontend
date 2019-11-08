@@ -1,20 +1,13 @@
+import { Project } from '../component/project/project'
 import { Injectable } from '@angular/core';
-import { Subject, Observable, BehaviorSubject } from 'rxjs';
-
-
-export interface Project {
-  projectId: number
-  projectName: string
-}
+import { Subject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProjectService {
-
-  projects: Project[]
-  currentProject: Project
 
   resourceFields;
   projectFields;
@@ -23,20 +16,19 @@ export class ProjectService {
 
   projectResources$: Observable<any>
   private projectResourcesSubject: Subject<any>
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      // tslint:disable-next-line: max-line-length
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    })
+  };
   
-  constructor() {
+  constructor(private _http: HttpClient) {
     this.projectResourcesSubject = new Subject<any>()
     this.projectResources$ = this.projectResourcesSubject.asObservable()
   }
 
-  loadProject() {
-    this.projects = [
-      {projectId:1, projectName: "Project1"},
-      {projectId:2, projectName: "Project2"},
-      {projectId:3, projectName: "Project3"},
-      {projectId:4, projectName: "Project4"},
-    ]
-  }
   
   getResourceFields() {
     this.resourceFields = ["resourceId", "PROJECT NAME", "PROJECT CODE"]

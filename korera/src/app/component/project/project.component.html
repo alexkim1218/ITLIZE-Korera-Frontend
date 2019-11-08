@@ -1,17 +1,11 @@
-<div class="container">
-  <div class="main">
-      <div class="project_dropdown">
-              <nz-button-group>
-                      <button nz-button (click)="log()">Project</button>
-                      <button nz-button nz-dropdown [nzDropdownMenu]="menu1" nzPlacement="bottomRight">
-                        <i nz-icon nzType="caret-down"></i>
-                      </button>
-              </nz-button-group>
-      </div>
-      <div class="tables">
-          <div class="resource">
-              <app-project-resource ></app-project-resource>
-          </div>
+<div class="main">
+    <div class="project_dropdown">
+        <app-project-selector></app-project-selector>
+    </div>
+    <div class="tables">
+        <div class="resource">
+            <app-project-resource ></app-project-resource>
+        </div>
 
           <div class="project">
               <app-project-project ></app-project-project>

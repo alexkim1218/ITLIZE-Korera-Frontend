@@ -1,19 +1,19 @@
 .resource {
+    width: 50%;
     float: left;
-    display: inline;
     padding: 10px;
 }
 
 .project {
+    width: 50%;
     float: left;
-    display: inline;
     padding: 10px;
 }
 
 #submit {
     height: 30px;
     position: relative;
-    background-color: orange;
+    background-color: orangered;
     color: white;
     border: none;
     float: right;
@@ -25,12 +25,13 @@
 }
 
 .main {
-    display: table;
+    width: 100%;
     margin: 0 auto;
     padding-bottom: 60px;
 }
 
 .tables {
+    width: 100%;
     position: relative;
     display: table;
     padding: 10px;
@@ -41,4 +42,3 @@
     margin: 20px;
     right: 30px;
 }
-
