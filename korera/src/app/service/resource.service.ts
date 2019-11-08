@@ -32,4 +32,5 @@ export class ResourceService {
     return this.http.get<Resource[]>(getAllResourceUrl, this.httpOptions);
   }
 
+
 }
