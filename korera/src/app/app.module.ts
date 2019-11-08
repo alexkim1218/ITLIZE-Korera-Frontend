@@ -24,6 +24,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { ProjectSelectorComponent } from './component/project-selector/project-selector.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import en from '@angular/common/locales/en';
     SidebarComponent,
     ProjectComponent,
     ProjectResourceComponent,
-    ProjectProjectComponent
+    ProjectProjectComponent,
+    ProjectSelectorComponent,
   ],
   imports: [
     BrowserModule,
