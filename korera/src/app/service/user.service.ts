@@ -18,7 +18,7 @@ export class UserService {
   };
   constructor(private _http: HttpClient) { }
 
-  getUser() {
+  getUser(){
     return this._http.get<User>(getUserUrl,this.httpOptions)
   }
 }

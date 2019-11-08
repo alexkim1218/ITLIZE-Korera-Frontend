@@ -16,6 +16,7 @@
         <tr class = "table_row" *ngFor="let resource of resources; index as i">
             <td *ngFor="let field of fields | slice: 1; index as id">
                 <input type="checkbox" *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)'>
+                <!-- <mat-checkbox *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)' [ngStyle]="{'color':blue}"></mat-checkbox> -->
                 {{resource[field]}}
             </td>
         </tr>

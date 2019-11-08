@@ -24,6 +24,14 @@ export class ProjectResourceComponent implements OnInit {
       "list",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/list.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      "check",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/check.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "uncheck",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/uncheck.svg")
+    );
   }
 
   ngOnInit() {

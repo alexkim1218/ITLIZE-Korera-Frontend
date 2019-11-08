@@ -37,7 +37,12 @@ export class ProjectService {
     this.projectFields = ["resourceId", "PROJECT NAME", "PROJECT CODE"]
   }
   getResourceResources() {
-    this.resourceResources = [{resourceId: 1, "PROJECT NAME": "qwer", "PROJECT CODE":"123"}, {resourceId: 2, "PROJECT NAME": "asdf", "PROJECT CODE":"456"}]
+    this.resourceResources = [
+      {resourceId: 1, "PROJECT NAME": "qwer", "PROJECT CODE":"123"},
+      {resourceId: 2, "PROJECT NAME": "asdf", "PROJECT CODE":"456"},
+      {resourceId: 3, "PROJECT NAME": "zxcv", "PROJECT CODE":"789"}
+
+    ]
   }
   getProjectResources() {
     this._projectResources = [{resourceId: 1, "PROJECT NAME": "qwer", "PROJECT CODE":"123"}]
@@ -79,7 +84,7 @@ export class ProjectService {
       }
     }
   });
-
+    console.log(this._projectResources)
     this.projectResourcesSubject.next(this._projectResources)
   }
 

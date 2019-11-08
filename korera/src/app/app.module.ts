@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 import { MatCheckboxModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { HttpClientModule } from "@angular/common/http";
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
@@ -58,6 +59,7 @@ import { ProjectSelectorComponent } from './component/project-selector/project-s
     NgZorroAntdModule,
     // RouterModule.forRoot(appRoutes),
     NgbModule,
+    MatButtonModule,
   ],
   exports: [
     HeaderComponent,
