@@ -11,8 +11,8 @@ import { ProjectSelectorService } from 'src/app/service/project-selector.service
 })
 export class ProjectSelectorComponent implements OnInit {
 
-  currentProject : Project
-  projects$ : Project[]
+  currentProject : Project = {projectId: 1, projectName: "Project1", extraCols: "123", extraColsType: "456"}
+  projects$ : Project[] = [{projectId: 2, projectName: "Project2", extraCols: "123", extraColsType: "456"}]
 
   constructor(private projectSelectorService: ProjectSelectorService, private userService: UserService) { }
 
