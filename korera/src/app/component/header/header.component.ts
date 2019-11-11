@@ -3,8 +3,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Router } from '@angular/router';
 import { ProjectSelectorService } from '../../service/project-selector.service';
 import { UserService } from '../../service/user.service';
-import { User } from '../../user';
 import { Project } from '../../project';
+import { User } from '../../user';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,8 @@ import { Project } from '../../project';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  user: User
   project: Project
+  user: User
 
   constructor(public dialog: MatDialog,
     private projectSelectorService: ProjectSelectorService,
@@ -46,14 +47,16 @@ export class HeaderComponent implements OnInit {
       const dialogRef = this.dialog.open(UserDialog, {
         panelClass: 'custom-dialog-container',
         position: {top: '85px', right: '8%'}
-      });
+      }
+    );
   }
 
   openQuestionDialog(): void {
       const dialogRef = this.dialog.open(QuestionDialog, {
         panelClass: 'custom-dialog-container',
         position: {top: '85px', right: '2%'}
-      });
+      }
+    );
   }
 }
 
@@ -62,10 +65,20 @@ export class HeaderComponent implements OnInit {
   templateUrl: './user-dialog/user-dialog.html',
   styleUrls: ['./user-dialog/user-dialog.css']
 })
-export class UserDialog {
+export class UserDialog implements OnInit {
+  user: User
 
   constructor(public dialogRef: MatDialogRef<UserDialog>,
+    private userService: UserService,
     private router: Router) {}
+
+  ngOnInit() {
+    this.userService.getUser().subscribe(
+      res_user => {
+        this.user = res_user;
+      }
+    )
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
