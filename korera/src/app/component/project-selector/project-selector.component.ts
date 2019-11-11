@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Project } from '../../project';
-import { UserService } from 'src/app/service/user.service';
-import { flatMap } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectSelectorService } from 'src/app/service/project-selector.service';
+import { UserService } from 'src/app/service/user.service';
+import { Project } from '../../project';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-project-selector',
@@ -10,11 +11,10 @@ import { ProjectSelectorService } from 'src/app/service/project-selector.service
   styleUrls: ['./project-selector.component.css']
 })
 export class ProjectSelectorComponent implements OnInit {
+  currentProject : Project = { projectId: 1, projectName: "Project1", extraCols: "123", extraColsType: "456" }
+  projects$ : Project[] = [{ projectId: 2, projectName: "Project2", extraCols: "123", extraColsType: "456" }]
 
-  currentProject : Project = {projectId: 1, projectName: "Project1", extraCols: "123", extraColsType: "456"}
-  projects$ : Project[] = [{projectId: 2, projectName: "Project2", extraCols: "123", extraColsType: "456"}]
-
-  constructor(private projectSelectorService: ProjectSelectorService, private userService: UserService) { }
+  constructor(private projectSelectorService: ProjectSelectorService, private userService: UserService, private modalService: NgbModal) {}
 
   ngOnInit() {
     this.userService.getUser()
