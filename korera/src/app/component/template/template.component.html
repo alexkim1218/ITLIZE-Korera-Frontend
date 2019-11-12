@@ -1,6 +1,6 @@
-<div class="custom-container" style="width: 1000px ;height: 500px">
-  <div class="row" style="width: 300 ;height: 400px">
-    <table class="col-3 table table-striped ">
+<!--<div class="custom-container" style="width: 1000px ;height: 500px">-->
+<div class="container row">
+    <table  class="col-3 table table-striped">
       <tbody>
         <tr class="row">
           <th class="col-sm-12">
@@ -22,7 +22,7 @@
       </tbody>
     </table>
 
-    <div class="col-1"></div>
+    <div class="col-1" style="border-right: solid 1px black"></div>
     <div class="col-7">
       <form [formGroup] = "fieldForm" (ngSubmit)="onSubmit()">
         <table class="table table-striped" formArrayName="fields">
@@ -103,4 +103,4 @@
       <!--<a routerLink="/formula"></a>-->
     </div>
   </div>
-</div>
+
