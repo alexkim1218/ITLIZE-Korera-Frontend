@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'resource', component: ResourceNewComponent },
   { path: 'project', component: ProjectComponent },
   { path: 'formula', component: FormulaComponent },
-  { path:'template',component:TemplateComponent}
+  { path: 'template', component: TemplateComponent}
 ];
 
 @NgModule({

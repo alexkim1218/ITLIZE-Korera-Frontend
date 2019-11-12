@@ -1,4 +1,6 @@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { FormBuilder } from '@angular/forms';
 import { FormulaService } from 'src/app/service/formula.service';
 import { Feature } from 'src/app/component/models/Feature';
 
@@ -12,10 +14,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./template.component.css']
 })
 export class TemplateComponent implements OnInit {
-  fieldForm: FormGroup;
+  
+  fieldForm = new FormGroup({});
   features: Feature[];
   displayedRows: string[] = [];
-  constructor(private formulaService: FormulaService, private router: Router) {}
+  constructor(private formulaService: FormulaService, private router: Router, private fb: FormBuilder) {}
   // checked = new Map();
   checkedFeatures: string[] = [];
   projectName: string;

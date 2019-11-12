@@ -32,8 +32,7 @@
                 Quantity Survey Fields
               </th>
             </tr>
-            <tr
-              *ngFor="let surveyFieldCtrl of getControls(); let i = index"
+            <tr *ngFor="let surveyFieldCtrl of getControls(); let i = index"
               class="row"
               [formGroupName]="i"
             >
