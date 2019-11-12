@@ -1,0 +1,135 @@
+.container{
+  max-width: 1000px;
+  max-height: 250px;
+  padding: 0;
+}
+
+.container > div{
+  height: auto;
+}
+
+.tableContainer {
+  max-width: 1000px;
+  max-height: 250px;
+  overflow: auto;
+  z-index: -1;
+}
+table {
+  border: 1px solid #dee2e6;
+  max-width: 1000px;
+  max-height: 250px;
+
+}
+
+tr {
+  width: 100%;
+  margin: auto;
+}
+
+th,td {
+  min-width: 250px;
+}
+
+.stickyHeaders {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+#tableHeader{
+  background-color: #dbdbdb;
+}
+
+#tableHeaderTools div{
+  padding: 4px;
+}
+
+.row {
+  display: block;
+}
+
+#tableHeaderTools{
+  background-color: grey;
+  display: flex;
+}
+
+#filterDiv{
+  display: flex;
+}
+
+#tableHeaderTools input{
+  padding: 2px;
+  border: lightgrey;
+  height: 100%;
+}
+
+#searchBtn {
+  height: 100%;
+}
+
+img{
+  height: 100%;
+  width: 100%;
+}
+
+button{
+  background-color: orangered;
+  color: white;
+  border: none;
+}
+
+.dropdown-toggle::after {
+  display:none;
+}
+
+#dropdown-menu {
+  min-height: 110px;
+  /* z-index: 9999 !important; */
+}
+
+#dropdown-menu > button{
+  background-color: white;
+  color: black;
+  /* height: 33%; */
+  padding: 0;
+}
+
+#dropdown-menu > button:hover{
+  background-color: #dbdbdb;
+}
+
+#dropdown-menu > button .row{
+  width: 100%;
+  margin: 0;
+  font-size: 10px;
+  display: flex;
+  z-index: 9999 !important;
+}
+
+#dropdown-menu > button .row div{
+  height: 100%;
+}
+
+#csv {
+  width: 0.1px;
+  height: 0.1px;
+  overflow: hidden;
+  z-index: -1;
+}
+label {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 10px;
+}
+
+.col .row{
+  margin: 0;
+  height: 30px;
+  overflow: hidden;
+}
+
+
+
+
