@@ -63,37 +63,40 @@
         </tr>
 
         <tr class="row" id="tableHeader" style="border: 1px solid lightgrey; height: 30px">
-          <th class="col text-center" scope="col"
+          <th *ngFor="let header of tableHeader"
+          class="col text-center" scope="col"
           style="border-right: 1px solid lightgrey;
           font-weight: 400; height: 100%;
-          font-size: 12px;padding: 4px">RESOURCE NAME</th>
-          <th class="col text-center" scope="col"
-          style="font-weight: 400; height: 100%;
-          font-size: 12px; padding: 4px">RESOURCE CODE</th>
+          font-size: 12px;padding: 4px">{{ header }}</th>
         </tr>
 
       </thead>
       <tbody>
-        <tr *ngFor="let t of search" class="row">
-          <td class="col">{{t.resourceName}}</td>
-          <td class="col">{{t.resourceCode}}</td>
+        <tr *ngFor="let s of search" class="row">
+          <td class="col">{{s.resourceName }}</td>
+          <td class="col">{{s.resourceCode }}</td>
+
+          <td class="col">{{s.resourceCode }}</td>
         </tr>
 
         <tr *ngIf="addingRow" class="row" #addRowElem>
-          <td class="col">
-            <input type="text" style="width: 100%" name="resourceName" #resourceNameInput>
-          </td>
-          <td class="col">
-            <div class="row" style="display: flex; width: 100%">
-                <button (click)="addRow(resourceNameInput,resourceCodeInput)" id="checkmark-btn" class="col-1">
-                  <img src="assets/img/checkmark.svg" alt="y">
-                </button>
-                <button (click)="setAddRow(false)" id="cancel-btn" class="col-1">
-                    <img src="assets/img/cancel.svg" alt="n">
-                </button>
-                <input class="col-10" type="text" style="width: 100%" name="resourceCode" #resourceCodeInput>
-            </div>
-          </td>
+              <td class="col">
+                <input type="text" style="width: 100%" name="resourceName" #resourceNameInput>
+              </td>
+              <td class="col">
+                <div class="row" style="display: flex; width: 100%">
+                    <button (click)="addRow(addRowElem)" id="checkmark-btn" class="col-2">
+                      <img src="assets/img/checkmark.svg" alt="y">
+                    </button>
+                    <button (click)="setAddRow(false)" id="cancel-btn" class="col-2">
+                        <img src="assets/img/cancel.svg" alt="n">
+                    </button>
+                    <input class="col-8" type="text" style="width: 100%" name="resourceCode" #resourceCodeInput>
+                </div>
+            </td>
+            <td class="col">
+              <input type="text" style="width: 100%" name="resourceData" #resourceDataInput>
+            </td>
         </tr>
       </tbody>
     </table>

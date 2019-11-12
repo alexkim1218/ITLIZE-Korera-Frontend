@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit, OnDestroy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceService } from '../../service/resource.service';
 import { ProjectSelectorService } from '../../service/project-selector.service';
 import { Resource } from '../../resource';
+import { Project } from '../../project';
 import { Router } from '@angular/router';
+import { switchMap, flatMap, takeUntil } from 'rxjs/operators';
+import { Subscription, Subject } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-resource',
@@ -11,49 +15,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./resource.component.css']
 })
 
-export class ResourceComponent implements OnInit {
+export class ResourceComponent implements  OnInit, OnDestroy {
 
+  tableHeader: string[] = ['RESOURCE NAME', 'RESOURCE CODE', 'RESOURCE DATA'];
   table: Resource[];
-  // table = [
-  //   {code: '12345', resourceName: 'Resource 1'},
-  //   {code: '12346', resourceName: 'Resource 2'},
-  //   {code: '12345', resourceName: 'Resource 3'},
-  //   {code: '12346', resourceName: 'Resource 4'},
-  //   {code: '12345', resourceName: 'Resource 5'},
-  //   {code: '12346', resourceName: 'Resource 6'},
-  //   {code: '12345', resourceName: 'Resource 7'},
-  //   {code: '12346', resourceName: 'Resource 8'},
-  //   {code: '12345', resourceName: 'Resource 9'},
-  //   {code: '12345', resourceName: 'Resource 5'}
-  // ];
   search: Resource[];
-
-  // search: [];
   addingRow = true;
   closeResult: string;
   csvContent: string;
-
+  currProject: Project;
+  public currProjObs: Subscription;
+  private ngUnsubscribe = new Subject();
   constructor(private modalService: NgbModal,
               private resourceService: ResourceService,
               private projectSelectorService: ProjectSelectorService,
-              private router: Router) { }
+              private router: Router) {}
 
   ngOnInit() {
-    this.resourceService.getAllResources().subscribe(
-      resp => {
-      // get resource table from database
-      this.table = resp;
-      this.search = this.table.filter(s => s.resourceName.includes(''));
-      console.log(this.table);
+    console.log('on init (resource page) called');
+
+    this.currProjObs = this.projectSelectorService.currentProjectObs()
+    .pipe(flatMap ( project => {
+      console.log('flat map');
+      return this.resourceService.getProjectResources(project.projectId);
+    }))
+    .subscribe(
+      resResource => {
+        this.table = resResource;
+        this.search = this.table;
+        console.log(this.search);
       },
       error => {
         if ( error.status === 401 ) {
           alert('You are not logged in or session timed out');
           this.router.navigateByUrl('/login');
         }
-        // console.log(error.error.status);
       }
     );
+
+    this.projectSelectorService.updateCurrentProject();
+
+
+  }
+
+  ngOnDestroy() {
+    console.log('unsub');
+    this.currProjObs.unsubscribe();
   }
 
   filterSearch(searchString: any) {
@@ -64,17 +71,16 @@ export class ResourceComponent implements OnInit {
     this.addingRow = val;
   }
 
-  addRow(resourceNameInput: any, resourceCodeInput: any) {
+  addRow(addRowElem: any) {
     // TODO
-    console.log(resourceNameInput.value);
-    console.log(resourceCodeInput.value);
+    // console.log(resourceNameInput.value);
+    // console.log(resourceCodeInput.value);
 
     // use service to add row
-
+    console.log(addRowElem);
 
     this.setAddRow(false);
   }
-
 
   openColumnModal( content: any ) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -112,7 +118,7 @@ export class ResourceComponent implements OnInit {
 
     const arrContent = this.csvContent.split('\n');
     const title = arrContent[0].split(',');
-    let values = [];
+    const values = [];
     for (let i = 1; i < arrContent.length; i++) {
       values.push(arrContent[i].split(','));
     }
@@ -127,4 +133,7 @@ export class ResourceComponent implements OnInit {
   addColumn(colName: HTMLInputElement) {
     console.log(typeof colName.value);
   }
+
+
+
 }
