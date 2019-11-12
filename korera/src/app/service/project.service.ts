@@ -57,6 +57,7 @@ export class ProjectService {
         i ++
       }
     }
+    this.projectResourcesSubject.next(this._projectResources)
   }
 
   resourceCheckboxChange(i) {

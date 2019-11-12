@@ -29,12 +29,16 @@ export class ProjectProjectComponent implements OnInit {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/trash.svg")
     );
     // this.resources = this.projectService._projectResources
+    this.projectSelectorService.currentProject$.pipe(
+      mergeMap(project => this.projectService.getProjectResources(project.projectId))
+    ).subscribe(resources => {
+      this.projectService._projectResources = resources
+      this.resources = resources
+    })
   }
   
   ngOnInit() {
-    this.projectSelectorService.currentProject$.pipe(
-      mergeMap(project => this.projectService.getProjectResources(project.projectId).pipe(take(1)))
-    ).subscribe(resources => this.projectService._projectResources = resources)
+
     this.projectService.projectResources$.subscribe(resources => this.resources = resources)
   }
 
