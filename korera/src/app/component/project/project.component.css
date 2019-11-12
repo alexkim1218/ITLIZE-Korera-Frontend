@@ -25,7 +25,7 @@
 }
 
 .main {
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     padding-bottom: 60px;
 }
@@ -41,4 +41,8 @@
     text-align: right;
     margin: 20px;
     right: 30px;
+}
+
+.toResource {
+    left: 40px;
 }

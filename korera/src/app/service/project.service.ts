@@ -2,6 +2,12 @@ import { Project } from '../project';
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Resource } from '../resource';
+
+const indexUrl = "http://localhost:8080/Korera/"
+const getProjectResourcesUrl = indexUrl + "project/getProjectResources"
+const resetProjectResourcesUrl = indexUrl + "project/resetProjectResource"
+const addProjectResourceUrl = indexUrl + "project/addProjectResource"
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +15,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class ProjectService {
 
-  resourceFields;
-  projectFields;
   resourceResources;
-  _projectResources;
+  _projectResources = [];
 
   projectResources$: Observable<any>
   private projectResourcesSubject: Subject<any>
@@ -29,21 +33,17 @@ export class ProjectService {
     this.projectResources$ = this.projectResourcesSubject.asObservable()
   }
 
-
-  getResourceFields() {
-    this.resourceFields = ["resourceId", "PROJECT NAME", "PROJECT CODE"]
-  }
-  getProjectFields() {
-    this.projectFields = ["resourceId", "PROJECT NAME", "PROJECT CODE"]
-  }
-  getResourceResources() {
-    this.resourceResources = [{resourceId: 1, "PROJECT NAME": "qwer", "PROJECT CODE":"123"}, {resourceId: 2, "PROJECT NAME": "asdf", "PROJECT CODE":"456"}]
-  }
-  getProjectResources() {
-    this._projectResources = [{resourceId: 1, "PROJECT NAME": "qwer", "PROJECT CODE":"123"}]
-    this.projectResourcesSubject.next(this._projectResources)
+  getProjectResources(pid: number) {
+    return this._http.get<Resource[]>(getProjectResourcesUrl + "/" + pid, this.httpOptions)
   }
 
+  resetProjectResources(pid: number) {
+    return this._http.delete(resetProjectResourcesUrl + "/" + pid, this.httpOptions)
+  }
+
+  addProjectResources(pid: number, rid: number) {
+    return this._http.post(addProjectResourceUrl + "/" + pid + "/" + rid, this.httpOptions)
+  }
 
   delete() {
     let i = 0
@@ -79,7 +79,7 @@ export class ProjectService {
       }
     }
   });
-
+    console.log(this._projectResources)
     this.projectResourcesSubject.next(this._projectResources)
   }
 
@@ -94,4 +94,5 @@ export class ProjectService {
       resource.checked = false
     });
   }
+
 }

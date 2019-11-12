@@ -1,21 +1,23 @@
 <div class="project">
-    <table class="table table-striped title">
+    <table class="table title">
         <th>
             <span>Project</span>
     
         <button class="icon" id="import" (click)='delete()'>    
-            <mat-icon class="import_icon" svgIcon="trash" [ngStyle]="{'color':'white','height':'70%', 'position':'relative','right':'7px'}"></mat-icon>
+            <mat-icon class="import_icon" svgIcon="trash" [ngStyle]="{'color':'white','height':'60%', 'position':'relative','right':'7px'}"></mat-icon>
         </button>
         </th>
     </table>
     
-    <table class="table table-striped main-table">
+    <table class="table table-borderless main-table">
         <tr class = "table_header">
             <th *ngFor="let field of fields | slice: 1">{{field}}</th>
         </tr>
         <tr class = "table_row" *ngFor="let resource of resources; index as i">
             <td *ngFor="let field of fields | slice: 1; index as id">
-                <input type="checkbox" *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)'>
+                <input type="checkbox" [id]="'a' + i" *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)'>
+                <label for='a{{i}}'></label>
+                <!-- <mat-checkbox *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)' [ngStyle]="{'color':blue}"></mat-checkbox> -->
                 {{resource[field]}}
             </td>
         </tr>
