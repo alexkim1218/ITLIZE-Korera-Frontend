@@ -19,12 +19,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public currListObs: Subscription
   project: Project
   user: User
-  
+
   constructor(public dialog: MatDialog,
     private projectSelectorService: ProjectSelectorService,
     private userService: UserService) {}
 
   ngOnInit() {
+    this.projectSelectorService.currentProjectObs();
     this.currUserObs = this.userService.getUser().subscribe(
       res_user => {
         this.user = res_user;
@@ -39,13 +40,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     )
 
-    this.currProjObs = this.projectSelectorService.currentProject$.subscribe(
+    this.currProjObs = this.projectSelectorService.currentProjectSubject.subscribe(
       res_project => {
+        console.log(res_project);
         this.project = res_project;
-        console.log(this.project);
+        // console.log(this.project);
       }
     );
-    this.projectSelectorService.updateCurrentProject();
+    // this.projectSelectorService.updateCurrentProject();
   }
 
  ngOnDestroy() {
