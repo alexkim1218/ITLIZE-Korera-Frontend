@@ -20,7 +20,7 @@
                 src="assets/img/plus-sign.svg" alt="+">
               </button>
               <div ngbDropdownMenu aria-labelledby="plusBtn" id="dropdown-menu" style="z-index: 9999;">
-                <button ngbDropdownItem (click)="setAddRow(true);">
+                <button ngbDropdownItem (click)="openRowModal(rowForm)">
                   <div class="row">
                       <div class="col-4">
                           <img src="assets/img/row.svg"
@@ -101,7 +101,30 @@
       </div>
 
       <!-- ADD ROW MODAL -->
-
+      <ng-template #rowForm let-modal>
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal-basic">Add New Row</h6>
+          <button id="closeModalBtn" (click)="modal.dismiss('Cross click')">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form style="width: 100%">
+            <div class="form-group">
+                <label for="resName">Resource Name:</label>
+                <input id="resName" type="text" #resourceNameInput>
+            </div>
+            <div class="form-group">
+                <label for="resCode">Resource Code:</label>
+                <input id="resCode" type="text" #resourceCodeInput>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="modal.close('Add click'); addRow(resourceNameInput, resourceCodeInput)">Add</button>
+          <button type="button" (click)="modal.close('Cancel click')">Cancel</button>
+        </div>
+      </ng-template>
 
       <!-- ADD COLUMN MODAL -->
       <ng-template #columnForm let-modal>

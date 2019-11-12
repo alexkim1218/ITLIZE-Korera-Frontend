@@ -18,11 +18,13 @@ export class ProjectSelectorService {
   currentProject$: Observable<Project>;
   project: Project;
 
-  private currentProjectSubject: Subject<Project>;
+  currentProjectSubject: Subject<Project>;
 ​
   constructor(private _http: HttpClient) {
     this.currentProjectSubject = new Subject<Project>();
     this.currentProject$ = this.currentProjectSubject.asObservable();
+    // this.currentProjectObs();
+    // this.currentProjectSubject.next({projectId: 1, projectName: "Project 1", extraCols: "", extraColsType: ""})
   }
 ​
   httpOptions = {
@@ -46,9 +48,16 @@ export class ProjectSelectorService {
     this.project = project;
   }
   currentProjectObs() {
-    return this.currentProjectSubject.asObservable();
+    if(this.currentProject){
+      this.currentProjectSubject.next(this.currentProject);
+    }
+    else{
+      this.currentProjectSubject.next({projectId: 1, projectName: 'Project 1', extraCols: '', extraColsType: ''});
+    }
+
+    //  return this.currentProjectSubject;
   }
   updateCurrentProject() {
-    this.currentProjectSubject.next(this.project);
+    // this.currentProjectSubject.next(this.project);
   }
 }
