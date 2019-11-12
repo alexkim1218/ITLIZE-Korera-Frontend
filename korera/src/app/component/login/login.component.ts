@@ -13,8 +13,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router
-    ) { }
+    private router: Router) {}
 
   credentials: string;
   user_name: string;
@@ -50,6 +49,7 @@ export class LoginComponent implements OnInit {
           // SET TOKEN IF SUCCESSFUL
           localStorage.setItem('token', resp);
           this.router.navigateByUrl('/resource');
+          // window.location.reload();
         }
       });
     } else {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProjectSelectorService } from '../../service/project-selector.service';
@@ -12,7 +12,10 @@ import { flatMap } from 'rxjs/operators';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy, AfterContentInit {
+  public currProjObs: Subscription
+  public currUserObs: Subscription
+  public currListObs: Subscription
   project: Project
   user: User
 
@@ -21,12 +24,12 @@ export class HeaderComponent implements OnInit {
     private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getUser().subscribe(
+    this.currUserObs = this.userService.getUser().subscribe(
       res_user => {
         this.user = res_user;
         console.log(this.user);
 
-        this.projectSelectorService.loadProjects(this.user.userId).subscribe(
+        this.currListObs = this.projectSelectorService.loadProjects(this.user.userId).subscribe(
           res_project => {
             console.log(res_project);
             this.projectSelectorService.changeCurrentProject(res_project[0]);
@@ -35,13 +38,20 @@ export class HeaderComponent implements OnInit {
       }
     )
 
-    this.projectSelectorService.currentProject$.subscribe(
+    this.currProjObs = this.projectSelectorService.currentProject$.subscribe(
       res_project => {
         this.project = res_project;
         console.log(this.project);
       }
     );
+    this.projectSelectorService.updateCurrentProject();
   }
+
+ ngOnDestroy() {
+   this.currProjObs.unsubscribe();
+   this.currUserObs.unsubscribe();
+   this.currListObs.unsubscribe();
+ }
 
   openUserDialog(): void {
       const dialogRef = this.dialog.open(UserDialog, {
@@ -88,6 +98,7 @@ export class UserDialog implements OnInit {
     localStorage.removeItem('token');
     this.dialogRef.close();
     this.router.navigateByUrl('/login');
+    // window.location.reload();
   }
 }
 
