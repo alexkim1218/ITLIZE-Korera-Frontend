@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <nz-button-group>
         <button nz-button (click)="log()">{{currentProject.projectName}}</button>
         <button nz-button nz-dropdown [nzDropdownMenu]="menu1" nzPlacement="bottomRight">
@@ -9,3 +10,17 @@
                 <li nz-menu-item *ngFor="let project of projects$; index as i" (click)='changeCurrentProject(i)'>{{project.projectName}}</li>
         </ul>
 </nz-dropdown-menu>
+=======
+<div ngbDropdown class="d-inline-block">
+  Select project:
+  <button ngbDropdownToggle>
+    {{currentProject.projectName}}
+  </button>
+
+  <div ngbDropdownMenu id="dropdown-menu">
+    <button ngbDropdownItem *ngFor="let project of projects$; index as i" (click)='changeCurrentProject(i)'>
+      {{project.projectName}}
+    </button>
+  </div>
+</div>
+>>>>>>> 8a6b83e8e80cf29cfe401208db6cf66a0a93daa2

@@ -5,6 +5,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable, from, Subscription, Subject } from 'rxjs';
 import { ProjectSelectorService } from 'src/app/service/project-selector.service';
+import { take } from 'rxjs/internal/operators/take';
 
 
 @Component({
@@ -35,10 +36,19 @@ export class ProjectComponent implements OnInit {
   }
 
   submit() {
-    this.subscriptions.push(this.projectService.resetProjectResources(this.projectSelectorService.currentProject.projectId).subscribe(
-      response => console.log("Project resources has reset.")
+    this.subscriptions.push(this.projectService.resetProjectResources(this.projectSelectorService.currentProject.projectId).pipe(take(1))
+    .subscribe(
+      response => {
+        console.log("Project resources has reset.")
+        this.projectService._projectResources.forEach(resource => {
+          this.projectService.addProjectResources(this.projectSelectorService.currentProject.projectId,resource.resourceId).pipe(take(1)).subscribe(response => {
+            console.log("added one row in project")
+          })
+        })
+      }
     ))
-    
+
+
   }
 
 }

@@ -1,0 +1,128 @@
+<div class="container">
+    <div>
+        <tr class="row" id="tableHeaderTools">
+          <div class="col" id="filterDiv">
+            <input type="text" placeholder="Keyword" #keySearch>
+            <button id="searchBtn" (click) = "filterSearch(keySearch)">
+              <img style="color: white;
+              height:10px; width: 10px; filter: brightness(0) invert(1);"
+              src="assets/img/magnifying-glass.svg" alt="magnifying-glass">
+            </button>
+          </div>
+          <div class="col text-center">
+            Resource Catalog
+          </div>
+          <div class="col text-right">
+            <div ngbDropdown class="d-inline-block" placement="bottom-right">
+              <button id="plusBtn" ngbDropdownToggle>
+                <img style="color: white;
+                height:10px; width: 10px; filter: brightness(0) invert(1);"
+                src="assets/img/plus-sign.svg" alt="+">
+              </button>
+              <div ngbDropdownMenu aria-labelledby="plusBtn" id="dropdown-menu" style="z-index: 9999;">
+                <button ngbDropdownItem (click)="setAddRow(true);">
+                  <div class="row">
+                      <div class="col-4">
+                          <img src="assets/img/row.svg"
+                          alt="csv-format-img">
+                      </div>
+                      <div class="col-8">
+                        Add Row
+                      </div>
+                  </div>
+                </button>
+                <button ngbDropdownItem (click)="openColumnModal(columnForm)">
+                  <div class="row">
+                    <div class="col-4">
+                      <img src="assets/img/columns.svg"
+                      alt="add-column-img">
+                    </div>
+                    <div class="col-8">
+                      Add Column
+                    </div>
+                  </div>
+                </button>
+                <button ngbDropdownItem>
+                    <div class="row">
+                      <label for="csv">
+                        <div class="col-4">
+                            <img src="assets/img/excel.svg"
+                            alt="csv-format-img">
+                        </div>
+                        <div class="col-8">
+                          Import CSV
+                        </div>
+                      </label>
+                      <input type="file" name="file" id="csv" accept=".csv"
+                      (change)="importCsv(csvFile)" #csvFile>
+                    </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </tr>
+    </div>
+
+    <div class="tableContainer">
+        <table class="table">
+          <thead>
+            <div class="stickyHeaders">
+              <tr class="row" id="tableHeader" style="border: 1px solid lightgrey;">
+                <th *ngFor="let header of tableHeader" class="col"
+                style="border-right: 1px solid lightgrey;
+                font-weight: 400; font-size: 12px;
+                padding: 4px">
+                  {{ header | uppercase }}
+                </th>
+              </tr>
+            </div>
+          </thead>
+          <tbody>
+            <tr class="row" *ngFor="let res of resourcesList">
+              <td class="col">{{ res.resourceName }}</td>
+              <td class="col">{{ res.resourceCode }}</td>
+              <td *ngFor="let item of parsedcols(res)"  class="col"> {{ item }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+
+      <!-- PAGINATION -->
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+        </ngb-pagination>
+
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (change)="updateResourceTable()">
+          <option [ngValue]="4">4 items per page</option>
+          <option [ngValue]="8">8 items per page</option>
+          <option [ngValue]="12">12 items per page</option>
+        </select>
+      </div>
+
+      <!-- ADD ROW MODAL -->
+
+
+      <!-- ADD COLUMN MODAL -->
+      <ng-template #columnForm let-modal>
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal-basic-title">Add New Column</h6>
+          <button id="closeModalBtn" (click)="modal.dismiss('Cross click')">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form style="width: 100%">
+            <div class="form-group">
+                <label for="colName">Column Name:</label>
+                <input id="colName" type="text" #colNameInput>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="modal.close('Add click'); addColumn(colNameInput)">Add</button>
+          <button type="button" (click)="modal.close('Cancel click')">Cancel</button>
+        </div>
+      </ng-template>
+</div>
+

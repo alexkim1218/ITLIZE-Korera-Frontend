@@ -1,11 +1,9 @@
 <div class=userDialog1><br>
-  <!-- TODO: CHANGE TO ACTUAL VALUE, {{title}} -->
-  <h2 mat-dialog-title>Cost Manager</h2>
+  <h2 *ngIf="user" mat-dialog-title>{{user.title}}</h2>
 
   <h3>Member since</h3>
 
-  <!-- TODO: CHANGE TO ACTUAL VALUE, {{date}} -->
-  <h3>November-2015</h3>
+  <h3 *ngIf="user">{{user.regDate | date: 'MMMM-yyyy'}}</h3>
 </div>
 
 <div class=userDialog2><br>
