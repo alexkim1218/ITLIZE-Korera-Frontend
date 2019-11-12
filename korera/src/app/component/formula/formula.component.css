@@ -4,7 +4,6 @@
     flex-direction: row-reverse;
     margin-right: 10px;
     margin-top: 20px;
-    margin-bottom: 40px;
 }
 
 #projectDropdown {
@@ -62,19 +61,33 @@ table {
 }
 
 .tableElement {
+    /*The data in the table (Not headers)*/
     padding-left: 20px;
     text-align: left;
 }
 
-#title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 32px;
-}
-
 #quantitySurveyLink, a {
+    /*The link to the Template page at the bottom of the page*/
+    display: inline;
     color: blueviolet;
     text-align: left;
     padding-left: 20px;
     text-decoration: none;
     font-weight: bold;
+}
+
+#submitCheck {
+    /*Checkmark image is provided as an SVG in the assets folder*/
+    width: 20px;
+    padding-left: 0px;
+}
+
+#dataSubmit {
+    /*The submit button at the bottom of the page*/
+    float: right;
+    align-self: right;
+    background-color: orangered;
+    color: white;
+    padding-bottom: 30px;
+    margin-top: -6px;
 }
