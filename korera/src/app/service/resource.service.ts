@@ -12,6 +12,7 @@ const addColUrl = baseUrl + '/project/addColumn/';
 const resetResourceUrl = baseUrl + '/project/resetProjectResource/';
 const resetColumnUrl = baseUrl + '/project/resetColumn/';
 const getAllResourcesUrl = baseUrl + '/resource/getAllResources';
+const deleteAllResourcesUrl = baseUrl + '/resource/deleteAllResource';
 
 @Injectable({
   providedIn: 'root',
@@ -73,6 +74,12 @@ export class ResourceService {
 
   resetColumn(pid: number) {
     return this.http.delete(resetColumnUrl + pid, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteAllResources() {
+    return this.http.delete(deleteAllResourcesUrl, this.httpOptions).pipe(
       catchError(this.handleError)
     );
   }
