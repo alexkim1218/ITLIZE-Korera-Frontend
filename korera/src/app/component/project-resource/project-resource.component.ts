@@ -7,6 +7,7 @@ import { Resource } from 'src/app/resource';
 import { UserService } from 'src/app/service/user.service';
 import { mergeMap } from 'rxjs/operators';
 import { ProjectSelectorService } from 'src/app/service/project-selector.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-resource',
@@ -18,6 +19,7 @@ export class ProjectResourceComponent implements OnInit {
 
   resources
   fields: string[] = ["resourceId", "resourceName", "resourceCode"]
+  subscriptions: Subscription[] = []
 
   constructor(
     private projectService : ProjectService, 
@@ -69,5 +71,9 @@ export class ProjectResourceComponent implements OnInit {
 
   clearAll() {
     this.projectService.clearAll()
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 }

@@ -42,7 +42,10 @@ export class ProjectService {
   }
 
   addProjectResources(pid: number, rid: number) {
-    return this._http.post(addProjectResourceUrl + "/" + pid + "/" + rid, this.httpOptions)
+    console.log(this.httpOptions)
+
+    return this._http.post(addProjectResourceUrl + "/" + pid + "/" + rid, {}, this.httpOptions)
+    
   }
 
   delete() {
