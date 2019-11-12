@@ -25,6 +25,7 @@ import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ProjectSelectorComponent } from './component/project-selector/project-selector.component';
+import { ResourceNewComponent } from './component/resource-new/resource-new.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ProjectSelectorComponent } from './component/project-selector/project-s
     ProjectResourceComponent,
     ProjectProjectComponent,
     ProjectSelectorComponent,
+    ResourceNewComponent,
   ],
   imports: [
     BrowserModule,

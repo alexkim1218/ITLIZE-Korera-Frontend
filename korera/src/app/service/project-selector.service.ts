@@ -7,7 +7,7 @@ import { unescapeIdentifier } from '@angular/compiler';
 const indexUrl = "http://localhost:8080/Korera";
 const getProjectsUrl = indexUrl + "/project/getUserProjects";
 const getDefaultProjectUrl = indexUrl + "/project/getDefaultProject";
-​
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +16,7 @@ export class ProjectSelectorService {
   // Observable of the current project
   currentProject$: Observable<Project>;
   project: Project;
-​
+
   private currentProjectSubject: Subject<Project>;
 ​
   constructor(private _http: HttpClient) {

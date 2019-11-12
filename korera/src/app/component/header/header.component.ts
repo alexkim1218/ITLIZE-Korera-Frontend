@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public currListObs: Subscription
   project: Project
   user: User
-
+  
   constructor(public dialog: MatDialog,
     private projectSelectorService: ProjectSelectorService,
     private userService: UserService) {}

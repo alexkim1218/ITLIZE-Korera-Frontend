@@ -30,7 +30,6 @@ tbody tr td{
 
 table{
   border: 1px solid #dee2e6;
-
 }
 
 thead, tbody, tr{
@@ -44,6 +43,7 @@ tbody{
 }
 
 tr{
+  height: auto !important;
   margin: 0;
 }
 
