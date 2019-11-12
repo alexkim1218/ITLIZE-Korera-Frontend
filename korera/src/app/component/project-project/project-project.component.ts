@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProjectService } from '../../service/project.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ProjectSelectorService } from 'src/app/service/project-selector.service';
 import { mergeMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-project',
@@ -14,6 +15,7 @@ export class ProjectProjectComponent implements OnInit {
 
   resources
   fields : string[] = ["resourceId", "resourceName", "resourceCode"]
+  subscriptions : Subscription[] = []
 
   constructor(
     private projectService : ProjectService,
@@ -21,19 +23,19 @@ export class ProjectProjectComponent implements OnInit {
     private matIconRegistry: MatIconRegistry, 
     private domSanitizer: DomSanitizer
     ) {
-    // this.projectService.projectResources$.subscribe((newResource) => {this.resources = newResource})
+    this.projectService.projectResources$.subscribe((newResource) => {this.resources = newResource})
     this.matIconRegistry.addSvgIcon(
       "trash",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/trash.svg")
     );
-    this.resources = this.projectService._projectResources
+    // this.resources = this.projectService._projectResources
   }
   
   ngOnInit() {
     this.resources = this.projectService._projectResources
     this.projectSelectorService.currentProject$.pipe(
       mergeMap(project => this.projectService.getProjectResources(project.projectId))
-    ).subscribe(resources => this.resources = resources)
+    ).subscribe(resources => this.projectService._projectResources = resources)
   }
 
   delete() {
@@ -42,5 +44,9 @@ export class ProjectProjectComponent implements OnInit {
 
   checkboxChange(i) {
     this.projectService.projectCheckboxChange(i)
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 }
