@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../service/project.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
+import { ResourceService } from 'src/app/service/resource.service';
+import { Resource } from 'src/app/resource';
+import { UserService } from 'src/app/service/user.service';
+import { mergeMap } from 'rxjs/operators';
+import { ProjectSelectorService } from 'src/app/service/project-selector.service';
 
 @Component({
   selector: 'app-project-resource',
@@ -12,10 +17,15 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class ProjectResourceComponent implements OnInit {
 
   resources
-  fields
-  selectAllbutton: boolean = false
+  fields: string[] = ["resourceId", "resourceName", "resourceCode"]
 
-  constructor(private projectService : ProjectService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+  constructor(
+    private projectService : ProjectService, 
+    private resourceService : ResourceService,
+    private userService : UserService,
+    private projectSelectorService : ProjectSelectorService,
+    private matIconRegistry: MatIconRegistry, 
+    private domSanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon(
       "import",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/import_arrow.svg")
@@ -35,35 +45,29 @@ export class ProjectResourceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.projectService.getResourceFields()
-    this.projectService.getResourceResources()
     this.resources = this.projectService.resourceResources
-    this.fields = this.projectService.resourceFields
+    this.resourceService.getAllResources().subscribe(
+      resources => {
+        console.log("all resources got")
+        console.log(resources)
+        this.projectService.resourceResources = resources
+        this.resources = this.projectService.resourceResources
+      })
   }
 
   checkboxChange(i) {
     this.projectService.resourceCheckboxChange(i)
-    this.resources = this.projectService.resourceResources
-    this.fields = this.projectService.resourceFields
   }
 
   import() {
     this.projectService.import()
   }
 
-  clickSelectAllButton() {
-    this.selectAllbutton = !this.selectAllbutton
-  }
-
   selectAll() {
     this.projectService.selectAll()
-    this.resources = this.projectService.resourceResources
-    this.fields = this.projectService.resourceFields
   }
 
   clearAll() {
     this.projectService.clearAll()
-    this.resources = this.projectService.resourceResources
-    this.fields = this.projectService.resourceFields
   }
 }

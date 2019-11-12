@@ -20,10 +20,14 @@ export class ProjectSelectorComponent implements OnInit {
   constructor(private projectSelectorService: ProjectSelectorService, private userService: UserService) { }
 
   ngOnInit() {
+    this.currentProject = this.projectSelectorService.currentProject
     this.userService.getUser()
       .pipe(flatMap(user => this.projectSelectorService.loadProjects(user.userId)))
-      .subscribe(response => this.projects$ = response)
-    this.projectSelectorService.currentProject$.subscribe(currentProject => this.currentProject = currentProject)
+      .subscribe(response => {
+        console.log(response)
+        this.projects$ = response
+      })
+    // this.projectSelectorService.currentProject$.subscribe(currentProject => this.currentProject = currentProject)
   }
 
   changeCurrentProject(i: number) {

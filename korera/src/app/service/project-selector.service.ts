@@ -14,6 +14,7 @@ const getDefaultProjectUrl = indexUrl + "/project/getDefaultProject"
 export class ProjectSelectorService {
 
   // Observable of the current project
+  currentProject : Project
   currentProject$: Observable<Project>;
 
   private currentProjectSubject: Subject<Project>;
@@ -39,6 +40,7 @@ export class ProjectSelectorService {
   }
 
   changeCurrentProject(project: Project) {
+    this.currentProject = project
     this.currentProjectSubject.next(project);
   }
 }

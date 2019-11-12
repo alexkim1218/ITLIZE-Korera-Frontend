@@ -13,7 +13,7 @@
     </div>
     <div class="foot">
         <button mat-button class = "toResource" [ngStyle]="{'color':'blue'}">Edit Resource</button>
-        <button id="submit">
+        <button id="submit" (click) = "submit()">
             <mat-icon class="tick" svgIcon="tick" [ngStyle]="{'color':'white','height':'60%', 'position':'relative','right':'2px'}"></mat-icon>
             <span id="submit_word">Submit</span>
         </button>

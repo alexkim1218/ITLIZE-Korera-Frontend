@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from '../../service/project.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
+import { ProjectSelectorService } from 'src/app/service/project-selector.service';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-project-project',
@@ -11,25 +13,28 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class ProjectProjectComponent implements OnInit {
 
   resources
-  fields
+  fields : string[] = ["resourceId", "resourceName", "resourceCode"]
 
-  constructor(private projectService : ProjectService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
-    this.projectService.projectResources$.subscribe((newResource) => {this.resources = newResource})
+  constructor(
+    private projectService : ProjectService,
+    private projectSelectorService : ProjectSelectorService, 
+    private matIconRegistry: MatIconRegistry, 
+    private domSanitizer: DomSanitizer
+    ) {
+    // this.projectService.projectResources$.subscribe((newResource) => {this.resources = newResource})
     this.matIconRegistry.addSvgIcon(
       "trash",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/trash.svg")
     );
+    this.resources = this.projectService._projectResources
   }
   
   ngOnInit() {
-    this.projectService.getProjectFields()
-    this.projectService.getProjectResources()
     this.resources = this.projectService._projectResources
-    this.fields = this.projectService.projectFields
-
+    this.projectSelectorService.currentProject$.pipe(
+      mergeMap(project => this.projectService.getProjectResources(project.projectId))
+    ).subscribe(resources => this.resources = resources)
   }
-
-  projectId : string
 
   delete() {
     this.projectService.delete()
