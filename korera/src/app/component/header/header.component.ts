@@ -99,7 +99,7 @@ export class UserDialog implements OnInit {
     localStorage.removeItem('token');
     this.dialogRef.close();
     this.router.navigateByUrl('/login');
-    // window.location.reload();
+    window.setInterval('window.location.reload()', 30);
   }
 }
 
