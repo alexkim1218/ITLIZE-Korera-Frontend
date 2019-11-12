@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           // SET TOKEN IF SUCCESSFUL
           localStorage.setItem('token', resp);
           this.router.navigateByUrl('/resource');
-          // window.location.reload();
+          window.setInterval('window.location.reload()', 30);
         }
       });
     } else {
