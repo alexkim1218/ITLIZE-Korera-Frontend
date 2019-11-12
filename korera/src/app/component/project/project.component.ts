@@ -42,7 +42,7 @@ export class ProjectComponent implements OnInit {
         console.log("Project resources has reset.")
         this.projectService._projectResources.forEach(resource => {
           this.projectService.addProjectResources(this.projectSelectorService.currentProject.projectId,resource.resourceId).pipe(take(1)).subscribe(response => {
-            console.log("added one row in project")
+            console.log("added one resource in project")
           })
         })
       }

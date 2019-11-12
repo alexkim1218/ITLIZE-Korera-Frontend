@@ -11,9 +11,8 @@ import { flatMap } from 'rxjs/operators';
   styleUrls: ['./project-selector.component.css']
 })
 export class ProjectSelectorComponent implements OnInit {
-  currentProject : Project = { projectId: 1, projectName: "Project1", extraCols: "123", extraColsType: "456" }
-  projects$ : Project[] = [{ projectId: 2, projectName: "Project2", extraCols: "123", extraColsType: "456" }]
-
+  currentProject : Project;
+  projects$ : Project[];
 
   constructor(private projectSelectorService: ProjectSelectorService, private userService: UserService, private modalService: NgbModal) {}
 
