@@ -11,7 +11,7 @@ import { flatMap } from 'rxjs/operators';
   styleUrls: ['./project-selector.component.css']
 })
 export class ProjectSelectorComponent implements OnInit {
-  currentProject : Project;
+  currentProject : Project = { projectId: 1, projectName: "Click Here", extraCols: "", extraColsType: "" }
   projects$ : Project[];
 
   constructor(private projectSelectorService: ProjectSelectorService, private userService: UserService, private modalService: NgbModal) {}
