@@ -1,3 +1,4 @@
+<div id="suroundingDiv">
 <div id="selectDiv">
     <select id="projectDropdown" class="custom-select" [(ngModel)]="selectedValue" (ngModelChange)="updateProject()">
         <option *ngFor="let element of projectList">
@@ -41,4 +42,5 @@
     <button type="button" class="btn" id="dataSubmit" (click)="updateFormulaData()">
         <img src="../../../assets/img/checkmark.svg" id="submitCheck">Submit
     </button>
+</div>
 </div>
