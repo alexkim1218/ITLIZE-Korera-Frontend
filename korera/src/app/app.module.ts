@@ -27,8 +27,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ProjectSelectorComponent } from './component/project-selector/project-selector.component';
 import { ResourceNewComponent } from './component/resource-new/resource-new.component';
-import { TemplateComponent } from './template/template.component';
-
+import { TemplateComponent } from './component/template/template.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +63,7 @@ import { TemplateComponent } from './template/template.component';
     // RouterModule.forRoot(appRoutes),
     NgbModule,
     MatButtonModule,
+    TemplateComponent
   ],
   exports: [
     HeaderComponent,
