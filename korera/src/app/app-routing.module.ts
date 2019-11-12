@@ -1,3 +1,4 @@
+import { TemplateComponent } from './component/template/template.component';
 import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { ResourceNewComponent } from './component/resource-new/resource-new.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'resource', component: ResourceNewComponent },
   { path: 'project', component: ProjectComponent },
-  { path: 'formula', component: FormulaComponent }
+  { path: 'formula', component: FormulaComponent },
+  { path: 'template', component: TemplateComponent}
 ];
 
 @NgModule({

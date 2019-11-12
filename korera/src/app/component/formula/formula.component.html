@@ -1,6 +1,3 @@
-<p id="title">{{ selectedValue }}</p>
-<hr>
-
 <div id="selectDiv">
     <select id="projectDropdown" class="custom-select" [(ngModel)]="selectedValue" (ngModelChange)="updateProject()">
         <option *ngFor="let element of projectList">
@@ -8,30 +5,6 @@
         </option>
     </select>
 </div>
-
-<div id="selectDiv">
-    <div id="projectDropdown"></div>
-</div>
-
-<!--  Old table before changing to bootstrap
-<div id="table">
-    <div id="tableHeader">
-        <p id="tableHeaderText">QUANTITY SURVEY</p>
-    </div>
-    <table>
-        <thead>
-            <td class="tableTab">NAME</td>
-            <td class="tableTab">COST_CODE</td>
-        </thead>
-        <tbody>
-            <tr *ngFor="let element of dataSource">
-                <td class="tableElement">{{element.name}}</td>
-                <td class="tableElement">{{element.costCode}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
--->
 
 <div id="table" class="container-fluid">
     <div id="tableHeader">
@@ -48,15 +21,24 @@
         </div>
         <div class="row" *ngFor="let element of dataSource">
             <!--"name" and "costCode" will always exist-->
-            <div class="col tableElement">{{element.name}}</div>
-            <div class="col tableElement">{{element.costCode}}</div>
-            <div class="col tableElement" *ngFor="let addData of element.addData">
+            <div class="col tableElement" contenteditable="true" (input)="element.name=$event.target.textContent" (focus)="editData($event)" (blur)="cleanData($event)">
+                {{element.name}}
+            </div>
+            <div class="col tableElement" contenteditable="true" (input)="element.costCode=$event.target.textContent" (focus)="editData($event)" (blur)="cleanIntData($event)">
+                {{element.costCode}}
+            </div>
+            <div class="col tableElement" contenteditable="true" *ngFor="let addData of element.addData; let i = index" (input)="element.addData[i]=$event.target.textContent" (focus)="editData($event)" (blur)="cleanData($event)">
                 {{addData}}
             </div>
         </div>
     </table>
 </div>
 
-<div id="quantitySurveyLink">
-    <a href="">Edit Quantity Survey Template</a>
+<div id="bottomBar" class="container-fluid">
+    <div id="quantitySurveyLink">
+        <a href="">Edit Quantity Survey Template</a>
+    </div>
+    <button type="button" class="btn" id="dataSubmit" (click)="updateFormulaData()">
+        <img src="../../../assets/img/checkmark.svg" id="submitCheck">Submit
+    </button>
 </div>
