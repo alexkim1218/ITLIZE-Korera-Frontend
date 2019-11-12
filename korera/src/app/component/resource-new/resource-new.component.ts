@@ -43,13 +43,13 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
   constructor(private modalService: NgbModal,
               private resourceService: ResourceService,
               private projectSelectorService: ProjectSelectorService,
-              private router: Router) { }
+              private router: Router) {
 
-  ngOnInit() {
-    console.log('on init (resource page) called');
 
-    this.currProjObs = this.projectSelectorService.currentProjectObs()
+    console.log('constructor (resource page) called');
+    this.currProjObs = this.projectSelectorService.currentProjectSubject
     .pipe(flatMap ( project => {
+      console.log(project);
       console.log('flat map');
       this.currProject = project;
       console.log('CURRENT PROJECT');
@@ -62,11 +62,11 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
           this.tableHeader.push(extraColsList[i]);
         }
       }
-
       return this.resourceService.getProjectResources(project.projectId);
     }))
     .subscribe(
       resResource => {
+        console.log(resResource);
         this.table = resResource;
         this.search = this.table;
 
@@ -83,7 +83,14 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
         }
       }
     );
-    this.projectSelectorService.updateCurrentProject();
+
+    this.projectSelectorService.currentProjectObs();
+  }
+
+
+  ngOnInit() {
+
+    // this.projectSelectorService.updateCurrentProject();
   }
 
   ngOnDestroy() {
@@ -128,6 +135,29 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
     return [];
   }
 
+  // ADD ROW METHODS
+  openRowModal( content: any ) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  addRow(resourceNameInput: any, resourceCodeInput: any) {
+    console.log(resourceNameInput.value);
+    console.log(resourceCodeInput.value);
+
+    const res: Resource = ({
+      resourceId: 0,
+      resourceName: resourceNameInput.value,
+      resourceCode: parseInt(resourceCodeInput.value.replace(/\s/g, ''), 10),
+      extraColsVal: '',
+    });
+    this.resourceService.addRow(this.currProject.projectId, res).subscribe();
+  }
+
   // ADD COLUMN METHODS
   openColumnModal( content: any ) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -152,6 +182,7 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
     this.resourceService.addColumn(this.currProject.projectId , colName.value, 'text').subscribe(resp => {
       console.log(resp);
       // this.tableHeader.push(colName.value);
+      this.refresh();
     });
   }
 
@@ -247,7 +278,13 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
       });
       this.resourceService.addRow(this.currProject.projectId, res).subscribe();
     }
+
+    this.refresh();
   }
 
+  refresh() {
+    this.tableHeader = ['RESOURCE NAME', 'RESOURCE CODE'];
+    this.projectSelectorService.updateCurrentProject();
+  }
 
 }
