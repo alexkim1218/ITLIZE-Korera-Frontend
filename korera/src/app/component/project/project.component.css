@@ -10,6 +10,12 @@
     padding: 10px;
 }
 
+
+
+.resource, .project{
+    overflow: auto;
+}
+
 #submit {
     height: 30px;
     position: relative;
