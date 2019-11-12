@@ -207,14 +207,19 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
       values.push(arrContent[i].split(','));
     }
 
-    this.resourceService.resetProjectResources(this.currProject.projectId).subscribe();
 
-    // update project table (extra cols)
-    this.resourceService.resetColumn(this.currProject.projectId).subscribe();
-    for (let i = 2; i < title.length; i++) {
-      // note: need to handle if type is not text (in the future)
-      this.resourceService.addColumn(this.currProject.projectId , title[i], 'text').subscribe();
-    }
+    this.resourceService.deleteAllResources().subscribe(
+      res => {
+        // update project table (extra cols)
+        this.resourceService.resetColumn(this.currProject.projectId).subscribe();
+        for (let i = 2; i < title.length; i++) {
+          // note: need to handle if type is not text (in the future)
+          this.resourceService.addColumn(this.currProject.projectId , title[i], 'text').subscribe();
+        }
+    });
+    // this.resourceService.resetProjectResources(this.currProject.projectId).subscribe();
+
+
 
     // update resource table
     // tslint:disable-next-line: prefer-for-of

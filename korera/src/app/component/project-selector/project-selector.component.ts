@@ -11,21 +11,17 @@ import { flatMap } from 'rxjs/operators';
   styleUrls: ['./project-selector.component.css']
 })
 export class ProjectSelectorComponent implements OnInit {
-  currentProject : Project;
+  currentProject : Project = { projectId: 1, projectName: "Click Here", extraCols: "", extraColsType: "" }
   projects$ : Project[];
 
   constructor(private projectSelectorService: ProjectSelectorService, private userService: UserService, private modalService: NgbModal) {}
 
-
   ngOnInit() {
-    this.currentProject = this.projectSelectorService.currentProject
+    // this.currentProject = this.projectSelectorService.currentProject
     this.userService.getUser()
       .pipe(flatMap(user => this.projectSelectorService.loadProjects(user.userId)))
-      .subscribe(response => {
-        console.log(response)
-        this.projects$ = response
-      })
-    // this.projectSelectorService.currentProject$.subscribe(currentProject => this.currentProject = currentProject)
+      .subscribe(response => this.projects$ = response)
+    this.projectSelectorService.currentProject$.subscribe(currentProject => this.currentProject = currentProject)
   }
 
   changeCurrentProject(i: number) {
