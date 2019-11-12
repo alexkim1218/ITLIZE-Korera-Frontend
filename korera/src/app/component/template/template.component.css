@@ -1,0 +1,17 @@
+.custom-container {
+    width: 700px;
+    padding: 50px 30px;
+    border-radius: 10px;
+  }
+  
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+  
+  button {
+    background: #ef662e;
+  }
+  .mat-icon{
+  
+    filter: invert(1);
+  }

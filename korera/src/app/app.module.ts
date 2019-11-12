@@ -5,7 +5,7 @@ import { ProjectResourceComponent } from './component/project-resource/project-r
 import { ProjectProjectComponent } from './component/project-project/project-project.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-bootstrap';
 import { ResourceComponent } from './component/resource/resource.component';
@@ -27,6 +27,9 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { ProjectSelectorComponent } from './component/project-selector/project-selector.component';
 import { ResourceNewComponent } from './component/resource-new/resource-new.component';
+import { TemplateComponent } from './component/template/template.component';
+import {enableProdMode} from '@angular/core';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { ResourceNewComponent } from './component/resource-new/resource-new.comp
     ProjectProjectComponent,
     ProjectSelectorComponent,
     ResourceNewComponent,
+    TemplateComponent
   ],
   imports: [
     BrowserModule,
@@ -59,13 +63,15 @@ import { ResourceNewComponent } from './component/resource-new/resource-new.comp
     MatIconModule,
     HttpClientModule,
     NgZorroAntdModule,
-    // RouterModule.forRoot(appRoutes),
+    //RouterModule.forRoot(appRoutes),
     NgbModule,
     MatButtonModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     HeaderComponent,
