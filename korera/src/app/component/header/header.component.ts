@@ -5,6 +5,7 @@ import { ProjectSelectorService } from '../../service/project-selector.service';
 import { UserService } from '../../service/user.service';
 import { Project } from '../../project';
 import { User } from '../../user';
+import { Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +13,7 @@ import { flatMap } from 'rxjs/operators';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy, AfterContentInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public currProjObs: Subscription
   public currUserObs: Subscription
   public currListObs: Subscription
