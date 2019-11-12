@@ -3,7 +3,7 @@ import { ProjectService } from '../../service/project.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ProjectSelectorService } from 'src/app/service/project-selector.service';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -32,10 +32,10 @@ export class ProjectProjectComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.resources = this.projectService._projectResources
     this.projectSelectorService.currentProject$.pipe(
-      mergeMap(project => this.projectService.getProjectResources(project.projectId))
+      mergeMap(project => this.projectService.getProjectResources(project.projectId).pipe(take(1)))
     ).subscribe(resources => this.projectService._projectResources = resources)
+    this.projectService.projectResources$.subscribe(resources => this.resources = resources)
   }
 
   delete() {
