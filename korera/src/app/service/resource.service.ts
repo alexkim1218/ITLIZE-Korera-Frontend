@@ -11,7 +11,8 @@ const addRowUrl = baseUrl + '/project/addField';
 const addColUrl = baseUrl + '/project/addColumn/';
 const resetResourceUrl = baseUrl + '/project/resetProjectResource/';
 const resetColumnUrl = baseUrl + '/project/resetColumn/';
-const getAllResourcesUrl = baseUrl + '/resource/getAllResources/';
+const getAllResourcesUrl = baseUrl + '/resource/getAllResources';
+const deleteAllResourcesUrl = baseUrl + '/resource/deleteAllResource';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,6 @@ export class ResourceService {
   getAllResources(): Observable<Resource[]> {
     return this.http.get<Resource[]>(getAllResourcesUrl, this.httpOptions);
   }
-
   getProjectResources(pid): Observable<Resource[]> {
 
     this.httpOptions = {
@@ -74,6 +74,12 @@ export class ResourceService {
 
   resetColumn(pid: number) {
     return this.http.delete(resetColumnUrl + pid, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteAllResources() {
+    return this.http.delete(deleteAllResourcesUrl, this.httpOptions).pipe(
       catchError(this.handleError)
     );
   }
