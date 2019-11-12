@@ -62,8 +62,8 @@ import { TemplateComponent } from './component/template/template.component';
     NgZorroAntdModule,
     // RouterModule.forRoot(appRoutes),
     NgbModule,
-    MatButtonModule,
-    TemplateComponent
+    MatButtonModule
+    
   ],
   exports: [
     HeaderComponent,
