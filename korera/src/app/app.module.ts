@@ -8,7 +8,6 @@ import { LoginComponent } from './component/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-bootstrap';
-import { ResourceComponent } from './component/resource/resource.component';
 import { NgbDropdownModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { FormulaComponent } from './component/formula/formula.component';
@@ -36,7 +35,6 @@ import {enableProdMode} from '@angular/core';
     AppComponent,
     LoginComponent,
     SignupComponent,
-    ResourceComponent,
     FormulaComponent,
     HeaderComponent,
     UserDialog,
