@@ -49,16 +49,18 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
     console.log('constructor (resource page) called');
     this.currProjObs = this.projectSelectorService.currentProjectSubject
     .pipe(flatMap ( project => {
-      console.log(project);
-      console.log('flat map');
+      // console.log(project);
+      // console.log('flat map');
       this.currProject = project;
-      console.log('CURRENT PROJECT');
-      console.table(this.currProject);
+      this.tableHeader = ['RESOURCE NAME', 'RESOURCE CODE'];
+      // console.log('CURRENT PROJECT');
+      // console.table(this.currProject);
 
       if (this.currProject.extraCols) {
         const extraColsList: string[] = this.currProject.extraCols.split(',');
         // tslint:disable-next-line: prefer-for-of
         for (let i = 0; i < extraColsList.length; i++) {
+          console.log(extraColsList[i]);
           this.tableHeader.push(extraColsList[i]);
         }
       }
@@ -66,7 +68,7 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
     }))
     .subscribe(
       resResource => {
-        console.log(resResource);
+        // console.log(resResource);
         this.table = resResource;
         this.search = this.table;
 
@@ -89,12 +91,12 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-
     // this.projectSelectorService.updateCurrentProject();
   }
 
   ngOnDestroy() {
     console.log('unsub');
+    this.tableHeader = ['RESOURCE NAME', 'RESOURCE CODE'];
     this.currProjObs.unsubscribe();
   }
 
@@ -155,6 +157,9 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
       resourceCode: parseInt(resourceCodeInput.value.replace(/\s/g, ''), 10),
       extraColsVal: '',
     });
+
+    this.table.push(res);
+
     this.resourceService.addRow(this.currProject.projectId, res).subscribe();
   }
 
@@ -181,40 +186,32 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
   addColumn(colName: HTMLInputElement) {
     this.resourceService.addColumn(this.currProject.projectId , colName.value, 'text').subscribe(resp => {
       console.log(resp);
-      // this.tableHeader.push(colName.value);
-      this.refresh();
+
+
+      // UPDATE FRONT END
+      this.tableHeader.push(colName.value);
+      for(let i = 0; i < this.table.length; i++) {
+        if(this.table[i].extraColsVal === ''){
+          this.table[i].extraColsVal += ' ';
+        }
+        else{
+          this.table[i].extraColsVal += ', ';
+        }
+      }
+      for(let i = 0; i < this.search.length; i++) {
+        if(this.search[i].extraColsVal === '') {
+          this.search[i].extraColsVal += ' ';
+        }
+        else{
+          this.search[i].extraColsVal += ', ';
+        }
+      }
+
+      window.location.reload();
     });
   }
 
   // IMPORT CSV
-  addCsvToDatabase(title: string[], values: any[]) {
-
-    // TODO: reset all resources and add resource here
-    console.log('INSIDE ADD CSV TO DATABASE');
-    this.resourceService.resetProjectResources(this.currProject.projectId).subscribe();
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < values.length; i++) {
-      // parse extra cols
-      let extraCols = '';
-      for ( let j = 2; j < values[i].length; j++) {
-        if ( j === 2) {
-          extraCols += values[i][j];
-        } else {
-          extraCols += ',' + values[i][j];
-        }
-      }
-
-      const res: Resource = ({
-        resourceId: 0,
-        resourceName: values[i][1],
-        resourceCode: values[i][0],
-        extraColsVal: extraCols,
-      });
-      this.resourceService.addRow(this.currProject.projectId, res).subscribe();
-
-    }
-  }
-
   importCsv(inputFile: HTMLInputElement) {
     const files = inputFile.files;
     if (files && files.length) {
@@ -238,53 +235,45 @@ export class ResourceNewComponent implements OnInit, OnDestroy {
       values.push(arrContent[i].split(','));
     }
 
-
-    // this.resourceService.deleteAllResources().subscribe(
-    //   res => {
-    //     // update project table (extra cols)
-    //     this.resourceService.resetColumn(this.currProject.projectId).subscribe();
-    //     for (let i = 2; i < title.length; i++) {
-    //       // note: need to handle if type is not text (in the future)
-    //       this.resourceService.addColumn(this.currProject.projectId , title[i], 'text').subscribe();
-    //     }
-    // });
-
-    this.resourceService.resetProjectResources(this.currProject.projectId).subscribe();
-    this.resourceService.resetColumn(this.currProject.projectId).subscribe();
-    for (let i = 2; i < title.length; i++) {
-      // note: need to handle if type is not text (in the future)
-      this.resourceService.addColumn(this.currProject.projectId , title[i], 'text').subscribe();
-    }
-
-
-    // update resource table
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < values.length; i++) {
-      // parse extra cols
-      let extraCols = '';
-      for ( let j = 2; j < values[i].length; j++) {
-        if ( j === 2) {
-          extraCols += values[i][j];
-        } else {
-          extraCols += ',' + values[i][j];
+    this.resourceService.deleteAllResources().subscribe(
+      res => {
+        console.log('DELETED ALL RESOURCES');
+        // update project table (extra cols) & front end
+        this.tableHeader = ['RESOURCE NAME', 'RESOURCE CODE'];
+        this.resourceService.resetColumn(this.currProject.projectId).subscribe();
+        for (let i = 2; i < title.length; i++) {
+          // note: need to handle if type is not text (in the future)
+          this.tableHeader.push(title[i]);
+          this.resourceService.addColumn(this.currProject.projectId , title[i], 'text').subscribe();
         }
-      }
 
-      const res: Resource = ({
-        resourceId: 0,
-        resourceName: values[i][1],
-        resourceCode: parseInt(values[i][0].replace(/\s/g, ''), 10),
-        extraColsVal: extraCols,
+        // update resource table & front end
+
+        this.table = [];
+        // tslint:disable-next-line: prefer-for-of
+        for (let i = 0; i < values.length; i++) {
+          // parse extra cols
+          let extraCols = '';
+          for ( let j = 2; j < values[i].length; j++) {
+            if ( j === 2) {
+              extraCols += values[i][j];
+            } else {
+              extraCols += ',' + values[i][j];
+            }
+          }
+
+          const res: Resource = ({
+            resourceId: 0,
+            resourceName: values[i][1],
+            resourceCode: parseInt(values[i][0].replace(/\s/g, ''), 10),
+            extraColsVal: extraCols,
+          });
+          // update front end
+          this.table.push(res);
+          this.resourceService.addRow(this.currProject.projectId, res).subscribe();
+        }
       });
-      this.resourceService.addRow(this.currProject.projectId, res).subscribe();
-    }
 
-    this.refresh();
-  }
-
-  refresh() {
-    this.tableHeader = ['RESOURCE NAME', 'RESOURCE CODE'];
-    this.projectSelectorService.updateCurrentProject();
   }
 
 }

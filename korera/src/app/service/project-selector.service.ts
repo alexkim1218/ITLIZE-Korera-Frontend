@@ -48,11 +48,10 @@ export class ProjectSelectorService {
     this.project = project;
   }
   currentProjectObs() {
-    if(this.currentProject){
+    if (this.currentProject) {
       this.currentProjectSubject.next(this.currentProject);
-    }
-    else{
-      this.currentProjectSubject.next({projectId: 1, projectName: 'Project 1', extraCols: '', extraColsType: ''});
+    } else {
+      this.currentProjectSubject.next({projectId: 1, projectName: 'Project 1', extraCols: 'asdf', extraColsType: 'text'});
     }
 
     //  return this.currentProjectSubject;
