@@ -12,9 +12,6 @@
 
 
 
-.resource, .project{
-    overflow: auto;
-}
 
 #submit {
     height: 30px;
@@ -52,3 +49,4 @@
 .toResource {
     left: 40px;
 }
+

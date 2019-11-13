@@ -1,7 +1,7 @@
 <div class="project">
-    <table class="table title">
-        <th>
-            <span>Project</span>
+    <table class="title">
+        <th class="title_row"> 
+            <span class="title_text">Project</span>
     
         <button class="icon" id="import" (click)='delete()'>    
             <mat-icon class="import_icon" svgIcon="trash" [ngStyle]="{'color':'white','height':'60%', 'position':'relative','right':'7px'}"></mat-icon>
@@ -9,18 +9,22 @@
         </th>
     </table>
     
-    <table class="table table-borderless main-table">
+    <table class="main-table">
+        <thead class="table_head">
         <tr class = "table_header">
             <th *ngFor="let field of fields | slice: 1">{{field}}</th>
         </tr>
+        </thead>
+        <tbody class="table_body">
         <tr class = "table_row" *ngFor="let resource of resources; index as i">
             <td *ngFor="let field of fields | slice: 1; index as id">
-                <input type="checkbox" [id]="'a' + i" *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)'>
-                <label for='a{{i}}'></label>
+                <input type="checkbox" class="checkbox" [id]="'a' + i" *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)'>
+                <label class="checkbox" for='a{{i}}'></label>
                 <!-- <mat-checkbox *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)' [ngStyle]="{'color':blue}"></mat-checkbox> -->
                 {{resource[field]}}
             </td>
         </tr>
+        </tbody>
     </table>
     </div>
     
