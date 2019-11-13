@@ -3,7 +3,7 @@ import { ProjectService } from '../../service/project.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ProjectSelectorService } from 'src/app/service/project-selector.service';
-import { mergeMap, take } from 'rxjs/operators';
+import { take, flatMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,23 +23,36 @@ export class ProjectProjectComponent implements OnInit {
     private matIconRegistry: MatIconRegistry, 
     private domSanitizer: DomSanitizer
     ) {
-    this.projectService.projectResources$.subscribe((newResource) => {this.resources = newResource})
     this.matIconRegistry.addSvgIcon(
       "trash",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/trash.svg")
     );
     // this.resources = this.projectService._projectResources
-    this.projectSelectorService.currentProject$.pipe(
-      mergeMap(project => this.projectService.getProjectResources(project.projectId))
-    ).subscribe(resources => {
-      this.projectService._projectResources = resources
-      this.resources = resources
-    })
+
   }
   
   ngOnInit() {
+    this.subscriptions.push(
+      this.projectService.getProjectResources(this.projectSelectorService.currentProject.projectId)
+    .subscribe(resources => {
+      this.projectService._projectResources = resources
+      this.resources = resources
+    }))
 
-    this.projectService.projectResources$.subscribe(resources => this.resources = resources)
+    this.subscriptions.push(
+      this.projectSelectorService.getCurrentProjectObservable().pipe(
+      flatMap(project => this.projectService.getProjectResources(project.projectId))
+    ).subscribe(resources => {
+      console.log("project change caught")
+      this.projectService._projectResources = resources
+      this.resources = resources
+    }))
+
+    this.subscriptions.push(
+    this.projectService.projectResources$.subscribe(resources => {
+      this.projectService._projectResources = resources
+      this.resources = resources
+    }))
   }
 
   delete() {

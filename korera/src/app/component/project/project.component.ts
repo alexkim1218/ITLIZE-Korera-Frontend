@@ -49,8 +49,6 @@ export class ProjectComponent implements OnInit {
       alert("Submitted")
       }
     ))
-
-
   }
 
   ngOnDestroy() {

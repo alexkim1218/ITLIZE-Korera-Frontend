@@ -1,7 +1,7 @@
 <div class="project">
-<table class="table title">
+<table class=" title">
     <th class="title_row">
-        <span>Resource Catalog</span>
+        <span class="title_text">Resource Catalog</span>
 
     <button class="icon" id="import" (click)='import()'>    
         <mat-icon class="import_icon" svgIcon="import" [ngStyle]="{'color':'white','height':'60%', 'position':'relative','right':'7px'}"></mat-icon>
@@ -29,10 +29,13 @@
     </th>
 </table>
 
-<table class="table table-borderless main-table">
+<table class=" main-table">
+    <thead class="table_head"> 
     <tr class = "table_header">
         <th *ngFor="let field of fields | slice: 1">{{field}}</th>
     </tr>
+    </thead>
+    <tbody class="table_body">
     <tr class = "table_row" *ngFor="let resource of resources; index as i">
         <td *ngFor="let field of fields | slice: 1; index as id">
             <input type="checkbox" [id]="i" *ngIf="id==0" [checked]="resource.checked" (change)='checkboxChange(i)'>
@@ -40,5 +43,6 @@
             {{resource[field]}}
         </td>
     </tr>
+    </tbody>
 </table>
 </div>

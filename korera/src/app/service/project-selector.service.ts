@@ -43,6 +43,7 @@ export class ProjectSelectorService {
   }
 ​
   changeCurrentProject(project: Project) {
+    console.log("current project changed")
     this.currentProject = project
     this.currentProjectSubject.next(project);
     this.project = project;
@@ -58,5 +59,8 @@ export class ProjectSelectorService {
   }
   updateCurrentProject() {
     // this.currentProjectSubject.next(this.project);
+  }
+  getCurrentProjectObservable() {
+    return this.currentProjectSubject.asObservable()
   }
 }
