@@ -2,13 +2,13 @@
 <div class="container row">
     <table  class="col-3 table table-striped">
       <tbody>
-        <tr class="row">
+        <tr class="row" >
           <th class="col-sm-12">
             Project Scope Fields
           </th>
         </tr>
 
-        <tr *ngFor="let resource of displayedRows" class="row">
+        <tr *ngFor="let resource of displayedRows" class="row" style="border: 1px solid gainsboro">
           <th class="col-sm-10">{{ resource }}</th>
           <th class="col-sm-2">
             <input
@@ -100,7 +100,10 @@
       >
         SAVE
       </button>
-      <!--<a routerLink="/formula"></a>-->
+      <a routerLink="/formula"></a>
     </div>
   </div>
+
+
+
 

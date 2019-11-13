@@ -3,6 +3,12 @@
     padding: 50px 30px;
     border-radius: 10px;
   }
+.table {
+    width: 170%;
+margin-bottom: 1rem;
+color:
+#212529;
+}
   
   input.ng-invalid.ng-touched {
     border: 1px solid red;

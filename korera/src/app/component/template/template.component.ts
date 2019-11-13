@@ -61,6 +61,8 @@ export class TemplateComponent implements OnInit {
     // }
     this.displayedRows.push('name');
     this.displayedRows.push("cost_code");
+    this.displayedRows.push("editable");
+    this.displayedRows.push("item_id");
   }
 
   saveHandler() {
