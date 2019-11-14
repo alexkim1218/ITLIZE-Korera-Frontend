@@ -22,13 +22,12 @@ import { MatButtonModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 import { HttpClientModule } from "@angular/common/http";
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { registerLocaleData } from '@angular/common';
-import en from '@angular/common/locales/en';
 import { ProjectSelectorComponent } from './component/project-selector/project-selector.component';
 import { ResourceNewComponent } from './component/resource-new/resource-new.component';
 import { TemplateComponent } from './component/template/template.component';
-import {enableProdMode} from '@angular/core';
-
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {KoreraInterceptor} from './service/korera-interceptor.service';
+import { NoCommaPipe } from './no-comma.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,8 @@ import {enableProdMode} from '@angular/core';
     ProjectProjectComponent,
     ProjectSelectorComponent,
     ResourceNewComponent,
-    TemplateComponent
+    TemplateComponent,
+    NoCommaPipe
   ],
   imports: [
     BrowserModule,
@@ -76,7 +76,13 @@ import {enableProdMode} from '@angular/core';
     UserDialog,
     QuestionDialog
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: KoreraInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [
     AppComponent,
     HeaderComponent
